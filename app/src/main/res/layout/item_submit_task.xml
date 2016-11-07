@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginLeft="30px"
+    android:layout_marginRight="30px"
+    android:orientation="vertical">
+
+    <EditText
+        android:id="@+id/item_sub_etxt"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:background="#fff"
+        android:gravity="center_vertical"
+        android:hint="旧密码"
+        android:textColor="#000"
+        android:textColorHint="#999999"
+        android:textSize="@dimen/text_content" />
+
+    <View
+        android:id="@+id/item_sub_v"
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:background="#dbdbdb" />
+
+
+</LinearLayout>

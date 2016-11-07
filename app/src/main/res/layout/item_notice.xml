@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:id="@+id/item_notice_linlay"
+    android:layout_height="88px"
+    android:background="#fff"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingLeft="30px"
+    android:paddingRight="30px">
+
+    <TextView
+        android:id="@+id/item_notice_content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="关于服务器更新维护,暂停服务通知"
+        android:textColor="#999999"
+        android:textSize="@dimen/text_content" />
+
+    <TextView
+        android:id="@+id/item_notice_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="08-26"
+        android:textColor="#999999"
+        android:textSize="@dimen/text_content" />
+
+</LinearLayout>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:background="#f5f5f5">
+
+
+    <info.hoang8f.widget.FButton
+        android:id="@+id/page_tv_more"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_marginBottom="30px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:layout_marginTop="30px"
+        android:gravity="center"
+        android:text="查看更多任务"
+        android:textColor="#fff"
+        android:textSize="30px"
+        fbutton:buttonColor="@color/button"
+        fbutton:cornerRadius="7px"
+        fbutton:shadowColor="@color/top"
+        fbutton:shadowEnabled="false"
+        fbutton:shadowHeight="7px" />
+
+</LinearLayout>

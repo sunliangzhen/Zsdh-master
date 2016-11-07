@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4c000000">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px"
+            android:background="@drawable/shape_share"
+            android:paddingBottom="30px"
+            android:paddingTop="30px">
+
+            <TextView
+                android:id="@+id/share_wei"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="15px"
+                android:drawableTop="@drawable/ic_wei"
+                android:gravity="center"
+                android:text="微信"
+                android:textSize="28px" />
+
+            <TextView
+                android:id="@+id/share_weip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="15px"
+                android:drawableTop="@drawable/ic_weip"
+                android:gravity="center"
+                android:text="朋友圈"
+                android:textSize="28px" />
+
+            <TextView
+                android:id="@+id/share_qq"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:drawablePadding="15px"
+                android:drawableTop="@drawable/ic_qq2"
+                android:gravity="center"
+                android:text="QQ"
+                android:textSize="28px"
+                android:visibility="gone" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/yhm_share_tv_cacel"
+            android:layout_width="match_parent"
+            android:layout_height="68px"
+            android:layout_marginBottom="20px"
+            android:layout_marginLeft="20px"
+            android:layout_marginRight="20px"
+            android:layout_marginTop="20px"
+            android:background="@drawable/shape_share"
+            android:gravity="center"
+            android:text="取消"
+            android:textColor="#2c82df"
+            android:textSize="28px" />
+    </LinearLayout>
+
+</RelativeLayout>
+

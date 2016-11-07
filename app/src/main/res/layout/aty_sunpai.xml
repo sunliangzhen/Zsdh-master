@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+
+    <RelativeLayout
+        android:id="@+id/top"
+        android:layout_width="match_parent"
+        android:layout_height="88px"
+        android:background="@color/top">
+
+        <ImageView
+            android:id="@+id/sunpai_imgv_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30px"
+            android:src="@drawable/ic_menu_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="晒一晒我的排名"
+            android:textColor="#fff"
+            android:textSize="@dimen/text_title" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/top">
+
+        <RelativeLayout
+            android:id="@+id/center"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="gone">
+
+            <ImageView
+                android:id="@+id/background"
+                android:layout_width="match_parent"
+                android:layout_height="800px" />
+
+            <LinearLayout
+                android:id="@+id/linlay_data"
+                android:layout_width="300px"
+                android:layout_height="300px"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="90px"
+                android:background="@drawable/share_my_profit"
+                android:orientation="vertical"
+                android:paddingTop="10px">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:gravity="center"
+                    android:text="我"
+                    android:textColor="#14827E"
+                    android:textSize="@dimen/text_title" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:gravity="center"
+                    android:text="通过“转发宝”APP"
+                    android:textColor="#14827E"
+                    android:textSize="@dimen/text_details2" />
+
+                <TextView
+                    android:id="@+id/sunpai_tv_mon"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:gravity="center"
+                    android:text="赚了0元"
+                    android:textColor="#14827E"
+                    android:textSize="@dimen/text_details" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:gravity="center"
+                    android:text="在所有转发宝中排名"
+                    android:textColor="#14827E"
+                    android:textSize="@dimen/text_details2" />
+
+                <TextView
+                    android:id="@+id/sunpai_tv_pai"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10px"
+                    android:gravity="center"
+                    android:text="无收益"
+                    android:textColor="#14827E"
+                    android:textSize="@dimen/text_details" />
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/yq_imgv_code"
+                android:layout_width="320px"
+                android:layout_height="320px"
+                android:layout_below="@+id/linlay_data"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="30px"
+                android:scaleType="fitXY" />
+
+
+            <info.hoang8f.widget.FButton
+                android:id="@+id/yq_fb_share"
+                android:layout_width="500px"
+                android:layout_height="60px"
+                android:layout_below="@+id/background"
+                android:layout_centerHorizontal="true"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="100px"
+                android:gravity="center"
+                android:text="我要晒一下"
+                android:textColor="#fff"
+                android:textSize="30px"
+                fbutton:buttonColor="@color/button"
+                fbutton:cornerRadius="20px"
+                fbutton:shadowColor="@color/button"
+                fbutton:shadowEnabled="false"
+                fbutton:shadowHeight="7px" />
+        </RelativeLayout>
+
+        <com.toocms.dink5.mylibrary.commonwidget.LoadingTip
+            android:id="@+id/loadedTip"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/details_relay_top"
+            android:layout_gravity="center"
+            android:gravity="center" />
+    </RelativeLayout>
+
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/include_share"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</RelativeLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="200px"
+    android:layout_height="200px"
+    >
+
+
+    <ImageView
+        android:id="@+id/item_sub_imgv"
+        android:layout_width="200px"
+        android:layout_height="200px"
+        android:layout_marginRight="15px"
+        android:layout_marginTop="15px"
+        android:background="#ebebeb"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_launcher" />
+
+    <ImageView
+        android:id="@+id/item_sub_imgv_cancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:src="@drawable/ic_pro_cacel" />
+</RelativeLayout>

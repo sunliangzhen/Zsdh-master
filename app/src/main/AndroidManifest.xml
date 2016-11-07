@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.shuxiangbaima.task">
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+    <uses-permission android:name="android.permission.GET_TASKS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_SETTINGS" />
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WRITE_APN_SETTINGS" />
+    <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
+
+
+    <application
+        android:name="com.shuxiangbaima.task.config.Myappcation"
+        android:allowBackup="true"
+        android:icon="@mipmap/app"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme2">
+
+        <meta-data
+            android:name="design_width"
+            android:value="750" />
+        <meta-data
+            android:name="design_height"
+            android:value="1334" />
+
+        <activity android:name="com.shuxiangbaima.task.ui.SplashAty">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <service android:name="com.shuxiangbaima.task.ui.lar.staService" />
+        <service android:name="com.shuxiangbaima.task.config.DownLoadService" />
+        <service android:name="com.shuxiangbaima.task.ui.page.Cashervice" />
+
+        <!--<activity-->
+            <!--android:name="com.yalantis.ucrop.UCropActivity"-->
+            <!--android:screenOrientation="portrait"-->
+            <!--android:theme="@style/Theme.AppCompat.Light.NoActionBar" />-->
+        <activity
+            android:name=".wxapi.WXEntryActivity"
+            android:exported="true"
+            android:label="@string/app_name" />
+
+        <activity android:name="com.shuxiangbaima.task.ui.mine.mynews.SetnewsAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.mynews.RenewsAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.main.activity.DetailsAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.YqAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.MonAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.PaiAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.SunpaiAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.below.IncomstateAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.below.IdeaAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.below.RepassAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.below.BusAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.lar.LoginAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.GuideAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.MainAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.lar.RegisterAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.lar.ForgetAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.Mon.ApplayAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.Mon.ApplayMonAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.Mon.ApplayRecordAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.mynews.Morenews" />
+        <activity android:name="com.shuxiangbaima.task.ui.lar.ForgetPreAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.lar.ForgetComAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.below.applay.ApplayMangerAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.below.applay.BindApplayAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.mine.below.applay.BindApplaycomAty" />
+        <activity android:name=".ui.mine.below.AboutAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.main.activity.TaskSubmitAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.main.activity.MyTaskAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.notice.NoticeAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.notice.NoticeDetailsAty" />
+        <activity android:name="com.shuxiangbaima.task.ui.page.AdDetailsAty" />
+
+        <receiver
+            android:name=".config.InitApkBroadCastReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

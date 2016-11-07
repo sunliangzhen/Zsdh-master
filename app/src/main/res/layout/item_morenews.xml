@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/cbox_morenews_a"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30px"
+        android:background="@drawable/shape_page_more"
+        android:button="@null"
+        android:checked="true"
+        android:drawableRight="@drawable/ic_menu_back"
+        android:gravity="center"
+        android:paddingBottom="17px"
+        android:paddingLeft="20px"
+        android:paddingRight="20px"
+        android:paddingTop="17px"
+        android:text="181165372"
+        android:textColor="#fff"
+        android:textSize="@dimen/text_details" />
+</LinearLayout>

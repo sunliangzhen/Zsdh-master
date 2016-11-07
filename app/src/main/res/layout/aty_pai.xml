@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:cube_ptr="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swiprefresh"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="88px"
+            android:background="@color/top">
+
+            <ImageView
+                android:id="@+id/pai_imgv_back"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="30px"
+                android:src="@drawable/ic_menu_back" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="收益排行榜"
+                android:textColor="#fff"
+                android:textSize="@dimen/text_title" />
+
+            <ImageView
+                android:id="@+id/pai_imgv_tosun"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="30px"
+                android:src="@drawable/share" />
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="200px"
+            android:background="#fff"
+            android:paddingLeft="30px"
+            android:paddingRight="30px">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/pai_imgv"
+                android:layout_width="120px"
+                android:layout_height="120px"
+                android:layout_marginRight="50px"
+                android:layout_marginTop="40px"
+                android:scaleType="centerCrop"
+                android:src="@drawable/default_head"
+                app:civ_border_color="#FF000000"
+                app:civ_border_width="0dp" />
+
+            <TextView
+                android:id="@+id/tv_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50px"
+                android:layout_toRightOf="@+id/pai_imgv"
+                android:text="学习机"
+                android:textColor="#000"
+                android:textSize="30px" />
+
+
+            <TextView
+                android:id="@+id/pai_tv_total_profit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginTop="50px"
+                android:text="1000000000元"
+                android:textColor="#000"
+                android:textSize="35px" />
+
+            <TextView
+                android:id="@+id/pai_tv_rank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="30px"
+                android:layout_toRightOf="@+id/pai_imgv"
+                android:text="1230名"
+                android:textColor="@color/top"
+                android:textSize="30px" />
+
+            <TextView
+                android:id="@+id/pai_tv_up"
+                android:layout_width="170px"
+                android:layout_height="50px"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginBottom="30px"
+                android:background="@drawable/shape_pai_1"
+                android:gravity="center"
+                android:text="提升排名"
+                android:textColor="#fff"
+                android:textSize="25px" />
+
+        </RelativeLayout>
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20px">
+
+            <android.support.v7.widget.RecyclerView
+                android:id="@+id/recyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+
+            <com.toocms.dink5.mylibrary.commonwidget.LoadingTip
+                android:id="@+id/loadedTip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </RelativeLayout>
+    </LinearLayout>
+
+</android.support.v4.widget.SwipeRefreshLayout>

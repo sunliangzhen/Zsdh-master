@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff"
+    android:orientation="vertical">
+
+
+    <LinearLayout
+        android:id="@+id/page_head_linlay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:orientation="horizontal"
+            android:paddingLeft="30px">
+
+            <TextView
+                android:id="@+id/pagehead_tv_02"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:clickable="true"
+                android:text="任务助手累计发放奖励："
+                android:textColor="#000"
+                android:textSize="30px" />
+
+            <TextView
+                android:id="@+id/pagehead_total_profit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="30px"
+                android:text=""
+                android:textColor="#f00"
+                android:textSize="30px" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingLeft="30px"
+            android:paddingRight="30px">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.toocms.dink5.mylibrary.view.FlipTextView
+                    android:id="@+id/pagehead_tv_01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="60px" />
+
+            </RelativeLayout>
+
+            <TextView
+                android:id="@+id/pagehead_tiem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="30px"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text=""
+                android:textColor="#292929"
+                android:textSize="30px" />
+        </LinearLayout>
+    </LinearLayout>
+
+
+</LinearLayout>

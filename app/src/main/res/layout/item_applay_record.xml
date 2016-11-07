@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="120px"
+    android:background="#fff"
+    android:paddingLeft="30px"
+    android:paddingRight="30px"
+    android:paddingTop="20px">
+
+    <TextView
+        android:id="@+id/item_applayre_tv_state"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:text="提现成功"
+        android:textColor="#0C0C0C"
+        android:textSize="@dimen/text_content" />
+
+    <TextView
+        android:id="@+id/item_applayre_tv_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/item_applayre_tv_state"
+        android:layout_marginTop="10px"
+        android:text="2016-08-15"
+        android:textColor="#B2B2B2"
+        android:textSize="@dimen/text_details2" />
+
+    <TextView
+        android:id="@+id/item_applayre_tv_mon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:text="200.00"
+        android:textColor="#16B416"
+        android:textSize="@dimen/text_content" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_alignParentBottom="true"
+        android:background="#E0DFDC" />
+</RelativeLayout>

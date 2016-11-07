@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">任务助手</string>
+
+    <string name="errcode_success">发送成功</string>
+    <string name="errcode_cancel">发送取消</string>
+    <string name="errcode_deny">发送被拒绝</string>
+    <string name="errcode_unknown">发送返回</string>
+    <string name="net">亲~请检查你的网络</string>
+</resources>

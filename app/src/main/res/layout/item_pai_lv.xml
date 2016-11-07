@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingBottom="30px"
+        android:paddingLeft="30px"
+        android:paddingRight="30px"
+        android:paddingTop="30px">
+
+        <TextView
+            android:id="@+id/item_tv_rank"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="#fff"
+            android:textSize="@dimen/text_content" />
+
+        <ImageView
+            android:id="@+id/item_imgv_head"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_marginLeft="50px"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/item_pai_tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="50px"
+            android:text="LoveAmy"
+            android:textColor="#000"
+            android:textSize="@dimen/text_content" />
+
+        <TextView
+            android:id="@+id/item_tv_money"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="right"
+            android:text="8856.1元"
+            android:textColor="#000"
+            android:textSize="@dimen/text_content" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:background="#dbdbdb" />
+</LinearLayout>

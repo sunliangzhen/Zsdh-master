@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:id="@+id/page_empty_relay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tv_net"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="500px"
+            android:text="@string/net"
+            android:textColor="#999999"
+            android:textSize="28px" />
+
+        <info.hoang8f.widget.FButton
+            android:id="@+id/page_empty_btn"
+            android:layout_width="250px"
+            android:layout_height="60px"
+            android:layout_below="@+id/tv_net"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30px"
+            android:text="重新加载"
+            android:textColor="#fff"
+            android:textSize="30px"
+            fbutton:buttonColor="#DC534D"
+            fbutton:cornerRadius="7px"
+            fbutton:shadowColor="#CF2D28"
+            fbutton:shadowEnabled="false"
+            fbutton:shadowHeight="7px" />
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,11 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.toocms.dink5.mylibrary"
+    android:versionCode="20160701"
+    android:versionName="v3.5.2">
+
+    <uses-sdk
+        tools:overrideLibrary="org.xutils"
+        android:minSdkVersion="14"
+        android:targetSdkVersion="23" />
+</manifest>

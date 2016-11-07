@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    >
+
+    <TextView
+        android:id="@+id/result_tv"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+	 	android:textSize="20dp"
+        android:text="这是SDK_Sample的入口界面"/>
+    
+    <Button
+        android:id="@+id/reg_btn"
+	    android:layout_margin="10dp"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="将该app注册到微信"/>
+    
+    <Button
+        android:id="@+id/goto_send_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+	    android:layout_margin="10dp"
+        android:text="跳转到发消息界面"/>
+    
+    <Button
+        android:id="@+id/launch_wx_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+	    android:layout_margin="10dp"
+        android:text="启动微信"/>
+    
+    <Button
+        android:id="@+id/check_timeline_supported_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="检查是否支持发送到朋友圈"/>
+
+</LinearLayout>

@@ -1,0 +1,66 @@
+<resources>
+    <!-- Base application theme. -->
+
+    <style name="loading_dialog" parent="android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <!-- 设置无遮罩层 -->
+        <item name="android:backgroundDimEnabled">false</item>
+
+    </style>
+
+    <style name="progress_dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@null</item>
+        <item name="android:windowBackground">@null</item>
+        <item name="android:backgroundDimEnabled">false</item>
+    </style>
+    <!---->
+    <!--普通dialog-->
+    <style name="CustomProgressDialog" parent="@style/CustomDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="CustomDialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Dialog</item>
+        <item name="android:windowSoftInputMode">stateUnspecified|adjustPan</item>
+    </style>
+
+    <declare-styleable name="FlowLayout">
+        <attr name="horizontal_spacing" format="dimension" />
+        <attr name="vertical_spacing" format="dimension" />
+    </declare-styleable>
+
+    <!-- 参考Seekbar -->
+    <declare-styleable name="windows2">
+
+        <!-- 背景颜色 -->
+        <attr name="background2" format="color" />
+        <!-- 进度颜色 -->
+        <attr name="progressDrawable2" format="color" />
+        <!-- 宽度 -->
+        <attr name="layout_width2" format="dimension" />
+        <!-- 字体颜色 -->
+        <attr name="textColor2" format="color" />
+        <!-- 字体大小 -->
+        <attr name="textSize2" format="dimension" />
+        <!-- 最大进度 -->
+        <attr name="max2" format="integer" />
+        <!-- 进度 -->
+        <attr name="progress2" format="integer" />
+        <!-- 进度点 -->
+        <attr name="thumb2" format="reference" />
+        <!-- 进度点宽高 -->
+        <attr name="thumbSize2" format="integer" />
+    </declare-styleable>
+</resources>

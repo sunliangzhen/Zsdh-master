@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:id="@+id/details_relay_top"
+        android:layout_width="match_parent"
+        android:layout_height="88px"
+        android:background="@color/top">
+
+        <ImageView
+            android:id="@+id/details_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="30px"
+            android:src="@drawable/ic_menu_back" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="试用任务"
+            android:textColor="#fff"
+            android:textSize="35px" />
+
+        <ProgressBar
+            android:id="@+id/myProgressBar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="5px"
+            android:layout_alignParentBottom="true"
+            android:background="#fff"
+            android:max="100"
+            android:progress="0"
+            android:progressDrawable="@drawable/progressbar_horizontal" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:id="@+id/linlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/details_relay_top"
+        android:background="#f5f5f5"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <RelativeLayout
+            android:id="@+id/details_relay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#fff"
+            android:paddingBottom="15px"
+            android:paddingLeft="30px"
+            android:paddingRight="30px"
+            android:paddingTop="15px"
+            android:visibility="visible">
+
+            <ImageView
+                android:id="@+id/details_imgv_cover"
+                android:layout_width="100px"
+                android:layout_height="100px"
+                android:layout_marginRight="15px"
+                android:scaleType="fitXY"
+                android:src="@drawable/banner" />
+
+
+            <TextView
+                android:id="@+id/details_tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/details_imgv_cover"
+                android:text="借贷宝"
+                android:textColor="#000"
+                android:textSize="30px" />
+
+            <TextView
+                android:id="@+id/details_tv_01"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/details_tv_title"
+                android:layout_marginTop="30px"
+                android:layout_toRightOf="@id/details_imgv_cover"
+                android:text="完成奖励 : "
+                android:textColor="#000"
+                android:textSize="24px" />
+
+            <TextView
+                android:id="@+id/details_tv_mon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/details_tv_title"
+                android:layout_marginTop="30px"
+                android:layout_toRightOf="@id/details_tv_01"
+                android:text="￥0.1"
+                android:textColor="#f00"
+                android:textSize="24px" />
+
+
+            <TextView
+                android:id="@+id/details_tv_state"
+                android:layout_width="120px"
+                android:layout_height="40px"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape_page_s"
+                android:gravity="center"
+                android:text="进行中"
+                android:textColor="#fff"
+                android:textSize="25px" />
+
+        </RelativeLayout>
+
+        <WebView
+            android:id="@+id/details_web"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="20px"
+            android:background="#f5f5f5"
+            android:visibility="visible" />
+
+
+    </LinearLayout>
+
+    <com.toocms.dink5.mylibrary.commonwidget.LoadingTip
+        android:id="@+id/loadedTip"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/details_relay_top"
+        android:layout_gravity="center"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@+id/details_tv_more"
+        android:layout_width="match_parent"
+        android:layout_height="80px"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30px"
+        android:layout_marginLeft="30px"
+        android:layout_marginRight="30px"
+        android:background="@color/top"
+        android:gravity="center"
+        android:text="分享"
+        android:textColor="#fff"
+        android:textSize="30px"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/details_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="30px"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/details_task_01"
+            android:layout_width="300px"
+            android:layout_height="60px"
+            android:background="@drawable/shape_page_more"
+            android:gravity="center"
+            android:text="提交任务"
+            android:textColor="#fff"
+            android:textSize="30px" />
+
+        <TextView
+            android:id="@+id/details_task_02"
+            android:layout_width="300px"
+            android:layout_height="60px"
+            android:layout_marginLeft="30px"
+            android:background="@drawable/shape_page_more"
+            android:gravity="center"
+            android:text="开始注册"
+            android:textColor="#fff"
+            android:textSize="30px" />
+    </LinearLayout>
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/include_share"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone" />
+</RelativeLayout>

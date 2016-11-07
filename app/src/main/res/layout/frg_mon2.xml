@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.toocms.dink5.mylibrary.view.MySwiperefreshlayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipeLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#fff">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/top">
+
+            <RelativeLayout
+                android:id="@+id/mon_top"
+                android:layout_width="match_parent"
+                android:layout_height="88px">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="我的收益"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/text_title" />
+
+                <TextView
+                    android:id="@+id/mon_tv_applay"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerInParent="true"
+                    android:layout_marginRight="30px"
+                    android:text="提现"
+                    android:textColor="#fff"
+                    android:textSize="@dimen/text_details" />
+            </RelativeLayout>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.toocms.dink5.mylibrary.view.TopScrollView
+                android:id="@+id/scrollview"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="500px"
+                        android:visibility="visible">
+
+                        <com.shuxiangbaima.task.view.MyViewPager
+                            android:id="@+id/mon_vp1"
+                            android:layout_width="match_parent"
+                            android:layout_height="500px"
+                            android:visibility="visible" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_point_group1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginBottom="30px"
+                            android:orientation="horizontal"
+                            android:visibility="visible">
+
+                        </LinearLayout>
+
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="88px"
+                        android:background="#fff"
+                        android:gravity="center_vertical"
+                        android:paddingLeft="30px"
+                        android:paddingRight="30px">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="账户总收益："
+                            android:textColor="#000"
+                            android:textSize="@dimen/text_content" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:gravity="right"
+                            android:text="0元"
+                            android:textColor="#000"
+                            android:textSize="@dimen/text_content" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="30px"
+                        android:text="近7日收益图"
+                        android:textColor="#000"
+                        android:textSize="@dimen/text_content" />
+
+
+                    <com.toocms.dink5.mylibrary.view.LinerView
+                        android:id="@+id/line_chart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#fff" />
+
+                </LinearLayout>
+            </com.toocms.dink5.mylibrary.view.TopScrollView>
+
+            <com.toocms.dink5.mylibrary.commonwidget.LoadingTip
+                android:id="@+id/loadedTip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:gravity="center" />
+        </RelativeLayout>
+    </LinearLayout>
+</com.toocms.dink5.mylibrary.view.MySwiperefreshlayout>

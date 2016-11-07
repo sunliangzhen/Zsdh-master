@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:orientation="vertical">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/task_relay_top"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/top">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/task_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="88px"
+                android:background="@color/top">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:text="任务列表"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_title" />
+
+                    <ImageView
+                        android:id="@+id/task_mytask"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="30px"
+                        android:src="@drawable/task" />
+                </RelativeLayout>
+
+            </android.support.v7.widget.Toolbar>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/task_relay"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/task_relay_top">
+
+            <FrameLayout
+                android:id="@+id/task_fram"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#fff">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="88px"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/linlay_all"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/task_tv_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/normal_white_pressed_gray"
+                            android:gravity="center"
+                            android:text="全部任务"
+                            android:textColor="@color/top"
+                            android:textSize="30px" />
+
+                        <ImageView
+                            android:id="@+id/imgv_all"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5px"
+                            android:src="@drawable/expand2" />
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="1px"
+                        android:layout_height="25px"
+                        android:background="#ebebeb" />
+
+                    <LinearLayout
+                        android:id="@+id/linlay_order"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/task_tv_order"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/normal_white_pressed_gray"
+                            android:gravity="center"
+                            android:text="默认排序"
+                            android:textColor="#000"
+                            android:textSize="30px" />
+
+                        <ImageView
+                            android:id="@+id/imgv_order"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="5px"
+                            android:src="@drawable/expand" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <View
+                    android:id="@+id/task_v_line"
+                    android:layout_width="200px"
+                    android:layout_height="2px"
+                    android:background="#aaff0000" />
+            </FrameLayout>
+
+            <com.toocms.dink5.mylibrary.ire.IRecyclerView
+                android:id="@+id/task_ptr_frame"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/task_fram"
+                android:background="@color/refresh_head"
+                app:loadMoreEnabled="true"
+                app:refreshEnabled="true"
+                app:refreshHeaderLayout="@layout/layout_irecyclerview_refresh_header" />
+
+            <com.toocms.dink5.mylibrary.commonwidget.LoadingTip
+                android:id="@+id/loadedTip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/task_fram"
+                android:layout_gravity="center"
+                android:gravity="center" />
+
+            <com.toocms.dink5.mylibrary.view.AutoRadioGroup
+                android:id="@+id/task_linlay_all"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/task_fram"
+                android:background="#a000"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/task_rbtn_01"
+                    android:layout_width="match_parent"
+                    android:layout_height="88px"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableRight="@drawable/selector_resex"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
+                    android:text="全部任务"
+                    android:textColor="@color/selector_task_rbtn"
+                    android:textSize="30px" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#dbdbdb" />
+
+                <RadioButton
+                    android:id="@+id/task_rbtn_02"
+                    android:layout_width="match_parent"
+                    android:layout_height="88px"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:drawableRight="@drawable/selector_resex"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
+                    android:text="分享文章任务"
+                    android:textColor="@color/selector_task_rbtn"
+                    android:textSize="30px" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#dbdbdb" />
+
+                <RadioButton
+                    android:id="@+id/task_rbtn_03"
+                    android:layout_width="match_parent"
+                    android:layout_height="88px"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:drawableRight="@drawable/selector_resex"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
+                    android:text="注册试用任务"
+                    android:textColor="@color/selector_task_rbtn"
+                    android:textSize="30px" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#dbdbdb" />
+
+                <RadioButton
+                    android:id="@+id/task_rbtn_04"
+                    android:layout_width="match_parent"
+                    android:layout_height="88px"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:drawableRight="@drawable/selector_resex"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
+                    android:text="游戏测试任务"
+                    android:textColor="@color/selector_task_rbtn"
+                    android:textSize="30px" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#dbdbdb" />
+
+                <RadioButton
+                    android:id="@+id/task_rbtn_05"
+                    android:layout_width="match_parent"
+                    android:layout_height="88px"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:drawableRight="@drawable/selector_resex"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
+                    android:text="游戏充值任务"
+                    android:textColor="@color/selector_task_rbtn"
+                    android:textSize="30px" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#dbdbdb" />
+
+                <RadioButton
+                    android:id="@+id/task_rbtn_hide"
+                    android:layout_width="match_parent"
+                    android:layout_height="88px"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:drawableRight="@drawable/selector_resex"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
+                    android:text="活动任务"
+                    android:textColor="#000"
+                    android:textSize="30px"
+                    android:visibility="gone" />
+
+            </com.toocms.dink5.mylibrary.view.AutoRadioGroup>
+
+            <com.toocms.dink5.mylibrary.view.AutoRadioGroup
+                android:id="@+id/task_linlay_order"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/task_fram"
+                android:background="#a000"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <RadioButton
+                    android:id="@+id/task_rbgn_m01"
+                    android:layout_width="match_parent"
+                    android:layout_height="88px"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:checked="true"
+                    android:drawableRight="@drawable/selector_resex"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
+                    android:text="默认排序"
+                    android:textColor="@color/selector_task_rbtn"
+                    android:textSize="30px" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#dbdbdb" />
+
+                <RadioButton
+                    android:id="@+id/task_rbgn_m02"
+                    android:layout_width="match_parent"
+                    android:layout_height="88px"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:drawableRight="@drawable/selector_resex"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
+                    android:text="最新上线"
+                    android:textColor="@color/selector_task_rbtn"
+                    android:textSize="30px" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1px"
+                    android:background="#dbdbdb" />
+
+                <RadioButton
+                    android:id="@+id/task_rbgn_m03"
+                    android:layout_width="match_parent"
+                    android:layout_height="88px"
+                    android:background="#fff"
+                    android:button="@null"
+                    android:drawableRight="@drawable/selector_resex"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="30px"
+                    android:paddingRight="30px"
+                    android:text="奖励最高"
+                    android:textColor="@color/selector_task_rbtn"
+                    android:textSize="30px" />
+            </com.toocms.dink5.mylibrary.view.AutoRadioGroup>
+        </RelativeLayout>
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_top"
+        app:backgroundTint="@color/main_color"
+        app:borderWidth="0dp"
+        app:elevation="0dp"
+        app:layout_behavior="com.shuxiangbaima.task.widget.ScrollAwareFABBehavior"
+        app:pressedTranslationZ="0dp"
+        app:rippleColor="@color/top" />
+</android.support.design.widget.CoordinatorLayout>
