@@ -15,8 +15,9 @@
 
         <ImageView
             android:id="@+id/submit_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:scaleType="fitXY"
             android:layout_centerVertical="true"
             android:layout_marginLeft="30px"
             android:src="@drawable/ic_menu_back" />
@@ -42,7 +43,7 @@
         android:visibility="gone"
         app:dividerThickness="2dp" />
 
-    <com.shuxiangbaima.task.view.a.ExpandGrideView
+    <GridView
         android:id="@+id/submit_gv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -69,6 +70,5 @@
         fbutton:shadowColor="@color/button"
         fbutton:shadowEnabled="false"
         fbutton:shadowHeight="7px" />
-
 
 </LinearLayout>

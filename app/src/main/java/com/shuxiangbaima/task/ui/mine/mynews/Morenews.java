@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.ScrollView;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Profile;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.PreferencesUtils;
@@ -24,7 +25,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/15.
  */
-public class Morenews extends BasAty implements LoadingTip.onReloadListener {
+public class Morenews extends BaseAty implements LoadingTip.onReloadListener {
 
     @ViewInject(R.id.flow_layout)
     private SingleFlowLayout flow_layout;
@@ -53,7 +54,7 @@ public class Morenews extends BasAty implements LoadingTip.onReloadListener {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
         showProgressContent();
         profile.options(this, this);
     }

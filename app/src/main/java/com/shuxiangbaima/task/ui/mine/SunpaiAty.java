@@ -12,6 +12,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.config.AppConfig;
 import com.shuxiangbaima.task.interfaces.Invitation;
 import com.shuxiangbaima.task.wxapi.Util;
@@ -37,7 +38,7 @@ import cn.bingoogolapple.qrcode.zxing.QRCodeEncoder;
 /**
  * Created by Administrator on 2016/8/11.
  */
-public class SunpaiAty extends BasAty implements LoadingTip.onReloadListener {
+public class SunpaiAty extends BaseAty implements LoadingTip.onReloadListener {
 
     @ViewInject(R.id.include)
     private View include;
@@ -77,7 +78,7 @@ public class SunpaiAty extends BasAty implements LoadingTip.onReloadListener {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
         loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
         invitation.invcode(this, this);
     }

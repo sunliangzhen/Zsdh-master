@@ -1,5 +1,6 @@
 package com.toocms.dink5.mylibrary.base;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,18 +8,28 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.toocms.dink5.mylibrary.R;
+import com.toocms.dink5.mylibrary.app.AppConstant;
+import com.toocms.dink5.mylibrary.app.Config;
 import com.toocms.dink5.mylibrary.baseapp.BaseApplication;
+import com.toocms.dink5.mylibrary.baserx.RxBus;
 import com.toocms.dink5.mylibrary.baserx.RxManager;
 import com.toocms.dink5.mylibrary.commonutils.TUtil;
 import com.toocms.dink5.mylibrary.commonutils.ToastUitl;
+import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
 import com.toocms.dink5.mylibrary.commonwidget.LoadingDialog;
+import com.toocms.dink5.mylibrary.net.ApiListener;
 
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
 import org.xutils.x;
 
+import java.util.Map;
 
-public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel> extends Fragment {
+
+public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel> extends Fragment implements ApiListener {
     protected View rootView;
     public T mPresenter;
     public E mModel;
@@ -189,6 +200,26 @@ public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel>
             mPresenter.onDestroy();
         mRxManager.clear();
     }
+
+    @Override
+    public void onException(Throwable var1, RequestParams params) {
+
+    }
+
+    @Override
+    public void onCancelled(Callback.CancelledException var1) {
+
+    }
+
+    @Override
+    public void onError(Map<String, String> var1, RequestParams var2) {
+
+    }
+
+    @Override
+    public void onComplete(RequestParams var1, String var2) {
+    }
+
 
 
 }

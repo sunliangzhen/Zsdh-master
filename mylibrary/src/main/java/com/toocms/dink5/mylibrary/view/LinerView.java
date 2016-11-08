@@ -127,7 +127,7 @@ public class LinerView extends View {
 //        xData.add("06日");
 //        xData.add("07日");
 
-        maxData = 1.0f;
+//        maxData = 1.0f;
     }
 
     @Override
@@ -307,9 +307,9 @@ public class LinerView extends View {
         maxData = 0;
         xData.addAll(list2);
         dataList.addAll(list);
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) > maxData) {
-                maxData = list.get(i);
+        for (int i = 0; i < dataList.size(); i++) {
+            if (dataList.get(i) > maxData) {
+                maxData = dataList.get(i);
             }
         }
         if (maxData > 0) {
@@ -323,9 +323,19 @@ public class LinerView extends View {
                 }
             }
         }
-        for (int i = 0; i < 6; i++) {
-            float i1 = (float) i * (ttt / 5) / 1000f;
-            yData.add(i1 + "");
+        if (maxData < 5) {
+            maxData = 5;
+            yData.add("0");
+            yData.add("1");
+            yData.add("2");
+            yData.add("3");
+            yData.add("4");
+            yData.add("5");
+        } else {
+            for (int i = 0; i < 6; i++) {
+                float i1 = (float) i * (ttt / 5) / 1000f;
+                yData.add(i1 + "");
+            }
         }
         if (maxData == 0) {
             init();

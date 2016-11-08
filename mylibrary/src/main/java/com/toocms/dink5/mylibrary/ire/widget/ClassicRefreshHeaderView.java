@@ -2,6 +2,7 @@ package com.toocms.dink5.mylibrary.ire.widget;
 
 import android.content.Context;
 import android.util.AttributeSet;
+import android.util.TypedValue;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.toocms.dink5.mylibrary.R;
 import com.toocms.dink5.mylibrary.ire.RefreshTrigger;
+import com.zhy.autolayout.utils.AutoUtils;
 
 /**
  * Created by aspsine on 16/3/14.
@@ -46,10 +48,12 @@ public class ClassicRefreshHeaderView extends RelativeLayout implements RefreshT
         inflate(context, R.layout.layout_irecyclerview_classic_refresh_header_view, this);
 
         tvRefresh = (TextView) findViewById(R.id.tvRefresh);
+        tvRefresh.setTextSize(TypedValue.COMPLEX_UNIT_PX, AutoUtils.getPercentWidthSizeBigger(30));
 
         ivArrow = (ImageView) findViewById(R.id.ivArrow);
 
         ivSuccess = (ImageView) findViewById(R.id.ivSuccess);
+
 
         progressBar = (ProgressBar) findViewById(R.id.progressbar);
 
@@ -76,7 +80,6 @@ public class ClassicRefreshHeaderView extends RelativeLayout implements RefreshT
                     ivArrow.startAnimation(rotateDown);
                     rotated = false;
                 }
-
                 tvRefresh.setText("下拉刷新");
             } else {
                 tvRefresh.setText("释放立即刷新");

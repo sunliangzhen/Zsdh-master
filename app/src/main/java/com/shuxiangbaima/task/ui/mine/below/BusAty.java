@@ -32,7 +32,7 @@ public class BusAty extends BasAty {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
     }
 
     @Override

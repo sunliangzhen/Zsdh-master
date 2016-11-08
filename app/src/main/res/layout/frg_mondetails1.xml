@@ -54,30 +54,59 @@
         android:textColor="#fff"
         android:textSize="28px" />
 
-    <TextView
-        android:id="@+id/mondetails_tv_pai"
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_marginBottom="100px"
         android:layout_marginLeft="30px"
-        android:text="排行榜"
-        android:drawableLeft="@drawable/top"
-        android:drawablePadding="10px"
-        android:textColor="#fff"
-        android:textSize="30px" />
+        android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/mondetails_tv_yq"
+
+        <ImageView
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:scaleType="fitXY"
+            android:src="@drawable/top"/>
+
+        <TextView
+            android:id="@+id/mondetails_tv_pai"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginLeft="15px"
+            android:clickable="true"
+            android:drawablePadding="10px"
+            android:text="排行榜"
+            android:textColor="#fff"
+            android:textSize="30px"/>
+    </LinearLayout>
+
+
+    <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="100px"
         android:layout_marginRight="30px"
-        android:text="邀请好友"
-        android:textColor="#fff"
-        android:drawablePadding="10px"
-        android:drawableRight="@drawable/invite"
-        android:textSize="30px" />
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/mondetails_tv_yq"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="15px"
+            android:text="邀请好友"
+            android:textColor="#fff"
+            android:textSize="30px"/>
+
+        <ImageView
+            android:layout_width="40px"
+            android:layout_height="40px"
+            android:scaleType="fitXY"
+            android:src="@drawable/invite"/>
+
+    </LinearLayout>
+
 </com.zhy.autolayout.AutoRelativeLayout>

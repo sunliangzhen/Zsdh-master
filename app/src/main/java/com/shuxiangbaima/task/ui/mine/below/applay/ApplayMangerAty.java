@@ -4,6 +4,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Security;
 import com.shuxiangbaima.task.ui.Mon.ApplayAty;
 import com.toocms.dink5.mylibrary.base.BasAty;
@@ -19,7 +20,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/23.
  */
-public class ApplayMangerAty extends BasAty {
+public class ApplayMangerAty extends BaseAty {
 
     @ViewInject(R.id.applaymanger_tv_01)
     private TextView tv_01;
@@ -39,7 +40,9 @@ public class ApplayMangerAty extends BasAty {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
+        showProgressContent();
+        security.get_bind_alipay(this, this);
     }
 
     @Override
@@ -50,8 +53,6 @@ public class ApplayMangerAty extends BasAty {
     @Override
     protected void onResume() {
         super.onResume();
-        showProgressContent();
-        security.get_bind_alipay(this, this);
     }
 
 

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Security;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
@@ -18,7 +19,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/11.
  */
-public class RepassAty extends BasAty {
+public class RepassAty extends BaseAty {
 
     @ViewInject(R.id.repass_etxt_pass)
     private EditText etxt_pass;
@@ -41,7 +42,7 @@ public class RepassAty extends BasAty {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
     }
 
 

@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Suggestion;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
@@ -18,7 +19,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/11.
  */
-public class IdeaAty extends BasAty {
+public class IdeaAty extends BaseAty {
 
     @ViewInject(R.id.idea_etxt_content)
     private EditText etxt_content;
@@ -38,7 +39,7 @@ public class IdeaAty extends BasAty {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
     }
 
 

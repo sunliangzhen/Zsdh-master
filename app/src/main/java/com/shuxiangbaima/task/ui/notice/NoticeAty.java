@@ -1,16 +1,29 @@
 package com.shuxiangbaima.task.ui.notice;
 
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.SpannedString;
+import android.text.style.AbsoluteSizeSpan;
+import android.util.TypedValue;
+import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.shuxiangbaima.task.R;
 import com.shuxiangbaima.task.interfaces.Notice;
 import com.toocms.dink5.mylibrary.base.BaseActivity;
+import com.toocms.dink5.mylibrary.commonutils.Settings;
+import com.zhy.autolayout.utils.AutoUtils;
 
 import org.xutils.DbManager;
 import org.xutils.view.annotation.Event;
@@ -24,11 +37,24 @@ import java.util.Map;
  */
 public class NoticeAty extends BaseActivity {
 
-    @ViewInject(R.id.tabLayout)
-    private TabLayout tabLayout;
+    @ViewInject(R.id.task_v_line)
+    private View sortFlag; // 排序标识
+    @ViewInject(R.id.tv_00)
+    private TextView tv_00;
+    @ViewInject(R.id.tv_01)
+    private TextView tv_01;
+    @ViewInject(R.id.tv_02)
+    private TextView tv_02;
+
+
+    private float sortFlagWidth; // 排序标识的长度
+    private int sortItemWidth; // 一个排序标签的宽度
+    private int sortItemPadding; // 每个item的左右边距
+    private int sortFlagPosition = 0; // 排序标识位置
+    private TextView[] ttvv;
+
     @ViewInject(R.id.viewPager)
     private ViewPager viewPager;
-    private DbManager db;
     private CustomAdapter customAdapter;
     private ArrayList<Fragment> list;
     private ArrayList<Map<String, String>> notice_list;
@@ -53,41 +79,89 @@ public class NoticeAty extends BaseActivity {
         list.add(new NoticeFragment1().newInstance("3"));
         notice = new Notice();
 //        db = x.getDb(((Myappcation) getApplicationContext()).getDaoConfig());
+        sortFlagWidth = AutoUtils.getPercentWidthSize(150);
+        sortItemWidth = (int) ((Settings.displayWidth - (AutoUtils.getPercentWidthSize(1) * 1)) /3);
+        sortItemPadding = (int) ((sortItemWidth - sortFlagWidth) / 2);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ttvv = new TextView[]{tv_00, tv_01, tv_02};
+        sortFlag.setBackgroundColor(getResources().getColor(R.color.top));
+        FrameLayout.LayoutParams params = new FrameLayout.LayoutParams((int) sortFlagWidth, AutoUtils.getPercentHeightSize(5));
+        params.gravity = Gravity.BOTTOM;
+        sortFlag.setLayoutParams(params);
+        sortFlag.setX(sortItemPadding);
+        startTranslate(sortFlag, sortItemPadding + (sortItemWidth * sortFlagPosition));
         viewPager.setAdapter(customAdapter);
         viewPager.setOffscreenPageLimit(3);
-        tabLayout.setupWithViewPager(viewPager);
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+        viewPager.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
             }
 
             @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+            public void onPageSelected(int position) {
+                sortFlagPosition = position;
+                setTextviewColor(sortFlagPosition);
+                startTranslate(sortFlag, sortItemPadding + (sortItemWidth * sortFlagPosition));
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
 
             }
         });
     }
 
-    @Event(value = {R.id.notice_imgv_back})
+    @Event(value = {R.id.notice_imgv_back, R.id.tv_00, R.id.tv_01, R.id.tv_02})
     private void onTestBaidulClick(View view) {
         switch (view.getId()) {
             case R.id.notice_imgv_back:
                 finish();
                 break;
+            case R.id.tv_00:
+                sortFlagPosition = 0;
+                viewPager.setCurrentItem(0);
+                break;
+            case R.id.tv_01:
+                sortFlagPosition = 1;
+                viewPager.setCurrentItem(1);
+                break;
+            case R.id.tv_02:
+                sortFlagPosition = 2;
+                viewPager.setCurrentItem(2);
+                break;
+        }
+        setTextviewColor(sortFlagPosition);
+        startTranslate(sortFlag, sortItemPadding + (sortItemWidth * sortFlagPosition));
+    }
+
+    private void setTextviewColor(int index) {
+        for (int i = 0; i < ttvv.length; i++) {
+            if (index == i) {
+                ttvv[i].setTextColor(getResources().getColor(R.color.top));
+            } else {
+                ttvv[i].setTextColor(0xff000000);
+            }
         }
     }
 
+    private void startTranslate(final View view, float endX) {
+        float startx = view.getX();
+        ValueAnimator animator = ValueAnimator.ofFloat(startx, endX);
+        animator.setTarget(view);
+        animator.setDuration(300).start();
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                view.setTranslationX((Float) animation.getAnimatedValue());
+            }
+        });
+        animator.start();
+    }
 //    @Override
 //    public void onComplete(RequestParams var1, String var2) {
 //        super.onComplete(var1, var2);
@@ -142,7 +216,7 @@ public class NoticeAty extends BaseActivity {
 //    }
 
     private class CustomAdapter extends FragmentPagerAdapter {
-        private String fragments[] = {"公告", "通知", "回复"};
+
 
         public CustomAdapter(FragmentManager supportFragmentManager) {
             super(supportFragmentManager);
@@ -158,10 +232,6 @@ public class NoticeAty extends BaseActivity {
             return list.size();
         }
 
-        @Override
-        public CharSequence getPageTitle(int position) {
-            return fragments[position];
-        }
     }
 
 }

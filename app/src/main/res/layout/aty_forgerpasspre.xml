@@ -14,8 +14,9 @@
 
         <ImageView
             android:id="@+id/forgetpasspre_imgv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:scaleType="fitXY"
             android:layout_centerVertical="true"
             android:layout_marginLeft="30px"
             android:src="@drawable/ic_menu_back" />
@@ -47,6 +48,7 @@
             android:gravity="center_vertical"
             android:hint="请输入手机号或用户名"
             android:textColor="#000"
+            android:maxLines="1"
             android:textColorHint="#999999"
             android:textSize="@dimen/text_content" />
 
@@ -68,6 +70,7 @@
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:background="#fff"
+                android:maxLines="1"
                 android:gravity="center_vertical"
                 android:hint="请输入图片验证码"
                 android:textColorHint="#999999"

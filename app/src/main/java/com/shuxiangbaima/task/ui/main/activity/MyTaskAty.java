@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Task;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.ImageUtils;
@@ -38,7 +39,7 @@ import it.gmariotti.recyclerview.adapter.SlideInLeftAnimatorAdapter;
 /**
  * Created by Administrator on 2016/9/14.
  */
-public class MyTaskAty extends BasAty implements OnRefreshListener, OnLoadMoreListener, LoadingTip.onReloadListener {
+public class MyTaskAty extends BaseAty implements OnRefreshListener, OnLoadMoreListener, LoadingTip.onReloadListener {
 
     @ViewInject(R.id.mytask_ptr_frame)
     private IRecyclerView frg_refush;
@@ -58,7 +59,7 @@ public class MyTaskAty extends BasAty implements OnRefreshListener, OnLoadMoreLi
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
         showProgressContent();
         task.my_task(next_offset, this, this);
     }
@@ -210,7 +211,6 @@ public class MyTaskAty extends BasAty implements OnRefreshListener, OnLoadMoreLi
                     viewHolder.tv_state.setText("已完成");
                     break;
             }
-//            x.image().bind(viewHolder.imav_cover, task_list.get(position).get("figure"), imageOptions);
             ImageUtils.display(MyTaskAty.this, task_list.get(position).get("figure"), viewHolder.imav_cover);
             viewHolder.page_linlay.setOnClickListener(new View.OnClickListener() {
                 @Override

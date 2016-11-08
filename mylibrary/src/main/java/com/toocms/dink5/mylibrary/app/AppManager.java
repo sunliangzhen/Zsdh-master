@@ -19,7 +19,7 @@ public class AppManager {
     }
 
     public static AppManager getInstance() {
-        if(mAppManager == null) {
+        if (mAppManager == null) {
             mAppManager = new AppManager();
         }
 
@@ -27,7 +27,7 @@ public class AppManager {
     }
 
     public void addActivity(Activity activity) {
-        if(mActivityStack == null) {
+        if (mActivityStack == null) {
             mActivityStack = new Stack();
         }
 
@@ -35,17 +35,17 @@ public class AppManager {
     }
 
     public Activity getTopActivity() {
-        Activity activity = (Activity)mActivityStack.lastElement();
+        Activity activity = (Activity) mActivityStack.lastElement();
         return activity;
     }
 
     public void killTopActivity() {
-        Activity activity = (Activity)mActivityStack.lastElement();
+        Activity activity = (Activity) mActivityStack.lastElement();
         this.killActivity(activity);
     }
 
     public void killActivity(Activity activity) {
-        if(activity != null) {
+        if (activity != null) {
             mActivityStack.remove(activity);
             activity.finish();
             activity = null;
@@ -53,12 +53,25 @@ public class AppManager {
 
     }
 
+    public void killtoActivity(Class<?> cls) {
+        Iterator iterator = mActivityStack.iterator();
+
+        while (iterator.hasNext()) {
+            Activity activity = (Activity) iterator.next();
+            if (!activity.getClass().equals(cls)) {
+                iterator.remove();
+                activity.finish();
+                activity = null;
+            }
+        }
+    }
+
     public void killActivity(Class<?> cls) {
         Iterator iterator = mActivityStack.iterator();
 
-        while(iterator.hasNext()) {
-            Activity activity = (Activity)iterator.next();
-            if(activity.getClass().equals(cls)) {
+        while (iterator.hasNext()) {
+            Activity activity = (Activity) iterator.next();
+            if (activity.getClass().equals(cls)) {
                 iterator.remove();
                 activity.finish();
                 activity = null;
@@ -70,9 +83,9 @@ public class AppManager {
     public void killAllActivity() {
         int i = 0;
 
-        for(int size = mActivityStack.size(); i < size; ++i) {
-            if(null != mActivityStack.get(i)) {
-                ((Activity)mActivityStack.get(i)).finish();
+        for (int size = mActivityStack.size(); i < size; ++i) {
+            if (null != mActivityStack.get(i)) {
+                ((Activity) mActivityStack.get(i)).finish();
             }
         }
 
@@ -82,7 +95,7 @@ public class AppManager {
     public void AppExit(Context context) {
         try {
             this.killAllActivity();
-            ActivityManager e = (ActivityManager)context.getSystemService(Context.ACTIVITY_SERVICE);
+            ActivityManager e = (ActivityManager) context.getSystemService(Context.ACTIVITY_SERVICE);
             e.restartPackage(context.getPackageName());
             System.exit(0);
         } catch (Exception var3) {

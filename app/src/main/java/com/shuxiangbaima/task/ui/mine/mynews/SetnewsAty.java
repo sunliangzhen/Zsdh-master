@@ -30,7 +30,6 @@ import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.Map;
@@ -63,7 +62,7 @@ public class SetnewsAty extends BasAty {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
     }
 
     @Override

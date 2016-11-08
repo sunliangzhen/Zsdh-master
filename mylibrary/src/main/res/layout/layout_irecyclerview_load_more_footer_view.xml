@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merge xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="48dp">
+    android:layout_height="100px"
+    android:gravity="center_vertical">
+
     <include
         android:id="@+id/theEndView"
-        layout="@layout/layout_irecyclerview_load_more_footer_the_end_view" />
+        layout="@layout/layout_irecyclerview_load_more_footer_the_end_view"/>
 
     <include
         android:id="@+id/errorView"
-        layout="@layout/layout_irecyclerview_load_more_footer_error_view" />
+        layout="@layout/layout_irecyclerview_load_more_footer_error_view"/>
 
     <include
         android:id="@+id/loadingView"
-        layout="@layout/layout_irecyclerview_load_more_footer_loading_view" />
+        layout="@layout/layout_irecyclerview_load_more_footer_loading_view"/>
 
-</merge>
+</com.zhy.autolayout.AutoRelativeLayout>

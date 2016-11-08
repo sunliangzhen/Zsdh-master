@@ -9,8 +9,8 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Profile;
-import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.PreferencesUtils;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
 
@@ -23,7 +23,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/10.
  */
-public class RenewsAty extends BasAty implements RadioGroup.OnCheckedChangeListener {
+public class RenewsAty extends BaseAty implements RadioGroup.OnCheckedChangeListener {
 
     @ViewInject(R.id.renews_rg)
     private RadioGroup renews_rg;
@@ -46,8 +46,7 @@ public class RenewsAty extends BasAty implements RadioGroup.OnCheckedChangeListe
     }
 
     @Override
-    protected void requestData() {
-
+    public void requestData() {
     }
 
     @Override
@@ -80,7 +79,6 @@ public class RenewsAty extends BasAty implements RadioGroup.OnCheckedChangeListe
             gender = "2";
             rbtn_nv.setChecked(true);
         }
-
     }
 
     @Override
@@ -121,13 +119,13 @@ public class RenewsAty extends BasAty implements RadioGroup.OnCheckedChangeListe
         Map<String, String> map = JSONUtils.parseKeyAndValueToMap(var2);
         if (var1.getUri().contains("modify_nickname")) {
             if (map.get("status").equals("200")) {
-                application.setUserInfoItem("nickname",etxt_name.getText().toString());
+                application.setUserInfoItem("nickname", etxt_name.getText().toString());
                 finish();
             }
         }
         if (var1.getUri().contains("modify_gender")) {
             if (map.get("status").equals("200")) {
-                application.setUserInfoItem("gender",gender);
+                application.setUserInfoItem("gender", gender);
                 finish();
             }
         }

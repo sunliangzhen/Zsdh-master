@@ -24,8 +24,7 @@ public class WXEntryActivity extends BasAty implements IWXAPIEventHandler {
     }
 
     @Override
-    protected void requestData() {
-
+    public void requestData() {
     }
 
     @Override
@@ -42,7 +41,6 @@ public class WXEntryActivity extends BasAty implements IWXAPIEventHandler {
 
     @Override
     public void initPresenter() {
-
     }
 
     @Override

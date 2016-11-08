@@ -14,6 +14,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BasFragment;
 import com.shuxiangbaima.task.interfaces.Profit;
 import com.shuxiangbaima.task.ui.mine.PaiAty;
 import com.shuxiangbaima.task.ui.mine.YqAty;
@@ -30,6 +31,7 @@ import com.toocms.dink5.mylibrary.view.TopScrollView;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import org.xutils.common.Callback;
+import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -42,7 +44,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/8.
  */
-public class MonFrg2 extends BaseFragment implements ApiListener, LoadingTip.onReloadListener {
+public class MonFrg2 extends BasFragment implements LoadingTip.onReloadListener {
 
 
     @ViewInject(R.id.ll_point_group1)
@@ -125,7 +127,14 @@ public class MonFrg2 extends BaseFragment implements ApiListener, LoadingTip.onR
         v1_cp = (CycleView) v_1.findViewById(R.id.arc);
         v11_cp = (CycleView) v_11.findViewById(R.id.arc11);
         tv_pai = (TextView) v_1.findViewById(R.id.mondetails_tv_pai);
+        TextView tv_paii = (TextView) v_11.findViewById(R.id.mondetails_tv_pai);
         tv_pai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(PaiAty.class, null);
+            }
+        });
+        tv_paii.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(PaiAty.class, null);
@@ -140,15 +149,22 @@ public class MonFrg2 extends BaseFragment implements ApiListener, LoadingTip.onR
 
         v_2 = getLayoutInflater(savedInstanceState).inflate(R.layout.frg_mondetails2, null);
         v_22 = getLayoutInflater(savedInstanceState).inflate(R.layout.frg_mondetails22, null);
-        TextView tv_yq2 = (TextView) v_2.findViewById(R.id.mondetails2_tv_yq);
+        TextView tv_yq2 = (TextView) v_2.findViewById(R.id.mondetails_tv_yq);
         v2_cp = (CycleView) v_2.findViewById(R.id.arc2);
         v22_cp = (CycleView) v_22.findViewById(R.id.arc22);
         tv_assist_profit = (TextView) v_2.findViewById(R.id.mon2_tv_assist_profit);
         tv_assist_profit2 = (TextView) v_22.findViewById(R.id.mon2_tv_assist_profit);
         tv_remainder2 = (TextView) v_2.findViewById(R.id.mon2_tv_remainder);
         tv_remainder22 = (TextView) v_22.findViewById(R.id.mon2_tv_remainder);
-        tv_pai2 = (TextView) v_2.findViewById(R.id.mondetails2_tv_pai);
+        tv_pai2 = (TextView) v_2.findViewById(R.id.mondetails_tv_pai);
+        TextView tv_pai22 = (TextView) v_22.findViewById(R.id.mondetails_tv_pai);
         tv_pai2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(PaiAty.class, null);
+            }
+        });
+        tv_pai22.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 startActivity(PaiAty.class, null);
@@ -210,6 +226,7 @@ public class MonFrg2 extends BaseFragment implements ApiListener, LoadingTip.onR
     public void onComplete(RequestParams var1, String var2) {
         loadedTip.setLoadingTip(LoadingTip.LoadStatus.finish);
         swipeLayout.setRefreshing(false);
+        super.onComplete(var1, var2);
         Map<String, String> map = JSONUtils.parseKeyAndValueToMap(var2);
         if (var1.getUri().contains("recent_profit")) {
             if (map.get("status").equals("200")) {
@@ -234,15 +251,19 @@ public class MonFrg2 extends BaseFragment implements ApiListener, LoadingTip.onR
                 lineChart.setData(data, date_list);
             }
         }
-
     }
 
     @Override
-    public void onError(Map<String, String> var1, RequestParams var2) {
+    protected void loginSuccess() {
+        if (Config.isLogin()) {
+            loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
+            profit.recent_profit(getActivity(), this);
+        }
     }
 
     @Override
     public void onException(Throwable var1, RequestParams params) {
+        super.onException(var1, params);
         swipeLayout.setRefreshing(false);
         loadedTip.setLoadingTip(LoadingTip.LoadStatus.finish);
         showNetError();

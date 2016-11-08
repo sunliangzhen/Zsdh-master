@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Security;
 import com.toocms.dink5.mylibrary.app.AppCountdown;
 import com.toocms.dink5.mylibrary.base.BasAty;
@@ -19,7 +20,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/23.
  */
-public class BindApplaycomAty extends BasAty {
+public class BindApplaycomAty extends BaseAty {
 
     @ViewInject(R.id.bingapplaycom_etxt_pass)
     private EditText etxt_account;
@@ -43,7 +44,7 @@ public class BindApplaycomAty extends BasAty {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
     }
 
     @Event(value = {R.id.bingapplaycom_imgv_back, R.id.bingapplaycom_tv_ok})

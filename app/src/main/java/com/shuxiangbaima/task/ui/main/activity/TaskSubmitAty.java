@@ -23,8 +23,10 @@ import android.widget.LinearLayout;
 
 import com.linearlistview.LinearListView;
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Task;
 import com.toocms.dink5.mylibrary.base.BasAty;
+import com.toocms.dink5.mylibrary.commonutils.ImageUtils;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -44,7 +46,7 @@ import me.nereo.multi_image_selector.MultiImageSelector;
 /**
  * Created by Administrator on 2016/9/13.
  */
-public class TaskSubmitAty extends BasAty {
+public class TaskSubmitAty extends BaseAty {
 
 
     @ViewInject(R.id.submit_list)
@@ -58,7 +60,6 @@ public class TaskSubmitAty extends BasAty {
     private ArrayList<Map<String, String>> list;
     private ArrayList<String> list_image;
     private Task task;
-    private ImageOptions imageOptions;
     private AlertDialog mAlertDialog;
     private static final int REQUEST_IMAGE = 2;
     private ArrayList<String> mSelectPath;
@@ -82,12 +83,10 @@ public class TaskSubmitAty extends BasAty {
         myadapter = new Myadapter();
         myadapter2 = new Myadapter2();
         data = getIntent().getStringExtra("data");
-        imageOptions = new ImageOptions.Builder().setImageScaleType(ImageView.ScaleType.FIT_XY).setUseMemCache(true).build();
     }
 
     @Override
-    protected void requestData() {
-
+    public void requestData() {
     }
 
     @Override
@@ -106,7 +105,6 @@ public class TaskSubmitAty extends BasAty {
 
     @Override
     public void initPresenter() {
-
     }
 
     @Event(value = {R.id.submit_back, R.id.sub_btn_ok})
@@ -312,12 +310,13 @@ public class TaskSubmitAty extends BasAty {
                     viewHolder.imgv_cancel.setVisibility(View.GONE);
                 } else {
                     viewHolder.imgv_cancel.setVisibility(View.VISIBLE);
-                    x.image().bind(viewHolder.imgv, list_image.get(i), imageOptions);
+                    ImageUtils.display(TaskSubmitAty.this, list_image.get(i), viewHolder.imgv);
                 }
 
             } else {
                 viewHolder.imgv_cancel.setVisibility(View.VISIBLE);
-                x.image().bind(viewHolder.imgv, list_image.get(i), imageOptions);
+                ImageUtils.display(TaskSubmitAty.this, list_image.get(i), viewHolder.imgv);
+
             }
             viewHolder.imgv_cancel.setOnClickListener(new View.OnClickListener() {
                 @Override

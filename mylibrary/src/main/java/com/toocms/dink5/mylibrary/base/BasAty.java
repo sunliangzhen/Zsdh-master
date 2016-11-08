@@ -14,6 +14,11 @@ public abstract class BasAty extends BaseActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         requestData();
     }
 
@@ -27,7 +32,7 @@ public abstract class BasAty extends BaseActivity {
         return getLayoutResId();
     }
 
-    protected abstract void requestData();
+    public abstract void requestData();
 
     protected abstract void initialized();
 

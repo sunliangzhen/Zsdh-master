@@ -20,6 +20,7 @@ import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Profit;
 import com.shuxiangbaima.task.ui.main.activity.MyTaskAty;
 import com.shuxiangbaima.task.ui.notice.DividerItemDecoration;
@@ -52,7 +53,7 @@ import in.srain.cube.views.ptr.header.MaterialHeader;
 /**
  * Created by Administrator on 2016/8/11.
  */
-public class PaiAty extends BasAty implements LoadingTip.onReloadListener {
+public class PaiAty extends BaseAty implements LoadingTip.onReloadListener {
 
     @ViewInject(R.id.pai_tv_rank)
     private TextView tv_rank;
@@ -83,7 +84,7 @@ public class PaiAty extends BasAty implements LoadingTip.onReloadListener {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
         showProgressContent();
         profit.profit_top(this, this);
     }

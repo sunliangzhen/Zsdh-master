@@ -11,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Profit;
 import com.shuxiangbaima.task.ui.mine.PaiAty;
 import com.toocms.dink5.mylibrary.base.BasAty;
@@ -36,7 +37,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/9/14.
  */
-public class IncomstateAty extends BasAty implements OnRefreshListener, OnLoadMoreListener, LoadingTip.onReloadListener {
+public class IncomstateAty extends BaseAty implements OnRefreshListener, OnLoadMoreListener, LoadingTip.onReloadListener {
 
     @ViewInject(R.id.iRecyclerView)
     private IRecyclerView iRecyclerView;
@@ -65,7 +66,7 @@ public class IncomstateAty extends BasAty implements OnRefreshListener, OnLoadMo
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
         showProgressContent();
         profit.profit_detail(next_offset, this, this);
     }

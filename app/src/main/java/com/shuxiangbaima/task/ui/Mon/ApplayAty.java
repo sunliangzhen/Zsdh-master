@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Cash;
 import com.shuxiangbaima.task.interfaces.Security;
 import com.toocms.dink5.mylibrary.base.BasAty;
@@ -21,7 +22,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/11.
  */
-public class ApplayAty extends BasAty {
+public class ApplayAty extends BaseAty {
 
     @ViewInject(R.id.apply_tv_low)
     private TextView tv_low;
@@ -47,7 +48,7 @@ public class ApplayAty extends BasAty {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
     }
 
     @Override

@@ -7,6 +7,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -157,6 +158,12 @@ public class TaskFrg extends BaseFragment<TaskListPresenter, TaskListModel> impl
 
         linlay_all.setOnCheckedChangeListener(this);
         linlay_order.setOnCheckedChangeListener(this);
+
+
+        CoordinatorLayout.LayoutParams layoutParams2 = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
+        layoutParams2.height = AutoUtils.getPercentHeightSize(110);
+        layoutParams2.width = AutoUtils.getPercentHeightSize(110);
+        fab.setLayoutParams(layoutParams2);
 
         SlideInLeftAnimatorAdapter slideInLeftAnimatorAdapter = new SlideInLeftAnimatorAdapter(myAdapter, frg_refush);
         slideInLeftAnimatorAdapter.getViewAnimator().setInitialDelayMillis(300);

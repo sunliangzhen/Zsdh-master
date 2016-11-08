@@ -1,20 +1,27 @@
 package com.toocms.dink5.mylibrary.base;
 
 
+import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.v4.content.ContextCompat;
+import android.view.View;
 import android.view.Window;
+import android.widget.TextView;
 
 import com.jaeger.library.StatusBarUtil;
 import com.toocms.dink5.mylibrary.R;
+import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.app.AppManager;
+import com.toocms.dink5.mylibrary.app.Config;
 import com.toocms.dink5.mylibrary.baseapp.BaseApplication;
+import com.toocms.dink5.mylibrary.baserx.RxBus;
 import com.toocms.dink5.mylibrary.baserx.RxManager;
 import com.toocms.dink5.mylibrary.commonutils.TUtil;
 import com.toocms.dink5.mylibrary.commonutils.ToastUitl;
+import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
 import com.toocms.dink5.mylibrary.commonwidget.LoadingDialog;
 import com.toocms.dink5.mylibrary.commonwidget.StatusBarCompat;
 import com.toocms.dink5.mylibrary.net.ApiListener;
@@ -138,14 +145,14 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
      * 着色状态栏（4.4以上系统有效）
      */
     protected void SetStatusBarColor() {
-        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this,R.color.main_color));
+        StatusBarCompat.setStatusBarColor(this, ContextCompat.getColor(this, R.color.main_color));
     }
 
     /**
      * 着色状态栏（4.4以上系统有效）
      */
     protected void SetStatusBarColor(int color) {
-        StatusBarCompat.setStatusBarColor(this,color);
+        StatusBarCompat.setStatusBarColor(this, color);
     }
 
     /**
@@ -343,4 +350,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     public void onException(Throwable var1, RequestParams params) {
         removeProgressContent();
     }
+
+
 }

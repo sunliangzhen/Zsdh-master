@@ -30,13 +30,6 @@ public class MyViewPager extends ViewPager {
         super(context, attrs);
     }
 
-    @Override
-    public boolean onInterceptTouchEvent(MotionEvent arg0) {
-        // TODO Auto-generated method stub
-        //当拦截触摸事件到达此位置的时候，返回true，
-        //说明将onTouch拦截在此控件，进而执行此控件的onTouchEvent
-        return true;
-    }
 
 //    @Override
 //    public boolean onTouchEvent(MotionEvent arg0) {

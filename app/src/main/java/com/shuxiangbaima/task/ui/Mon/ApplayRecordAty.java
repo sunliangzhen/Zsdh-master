@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Cash;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonwidget.LoadingTip;
@@ -32,7 +33,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/9/18.
  */
-public class ApplayRecordAty extends BasAty implements OnRefreshListener, OnLoadMoreListener, LoadingTip.onReloadListener {
+public class ApplayRecordAty extends BaseAty implements OnRefreshListener, OnLoadMoreListener, LoadingTip.onReloadListener {
 
 
     @ViewInject(R.id.applaymon_ptr_frame)
@@ -60,7 +61,7 @@ public class ApplayRecordAty extends BasAty implements OnRefreshListener, OnLoad
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
         showProgressContent();
         cash.cash_list(next_offset, this, this);
     }

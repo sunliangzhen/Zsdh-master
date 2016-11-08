@@ -7,12 +7,13 @@ import android.view.View;
 import android.widget.FrameLayout;
 
 import com.toocms.dink5.mylibrary.R;
+import com.zhy.autolayout.AutoFrameLayout;
 
 
 /**
  * Created by aspsine on 16/3/14.
  */
-public class LoadMoreFooterView extends FrameLayout {
+public class LoadMoreFooterView extends AutoFrameLayout {
 
     private Status mStatus;
 

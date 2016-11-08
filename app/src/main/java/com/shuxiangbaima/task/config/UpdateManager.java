@@ -1,5 +1,6 @@
 package com.shuxiangbaima.task.config;
 
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -13,8 +14,13 @@ import android.widget.Toast;
 
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
+import com.shuxiangbaima.task.ui.MainAty;
+import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.app.AppManager;
+import com.toocms.dink5.mylibrary.baserx.RxBus;
 import com.toocms.dink5.mylibrary.commonutils.FileManager;
+import com.toocms.dink5.mylibrary.commonutils.PreferencesUtils;
 import com.toocms.dink5.mylibrary.net.ApiListener;
 import com.toocms.dink5.mylibrary.net.ApiTool;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
@@ -60,27 +66,28 @@ public class UpdateManager {
                 if (JSONUtils.parseKeyAndValueToMap(result).equals("204")) {
                     if (hasHint) Toast.makeText(x.app(), "已是最新版本", Toast.LENGTH_SHORT).show();
                 } else {
-                    final Map<String, String> map = JSONUtils.parseDataToMap(result);
-                    View view = View.inflate(AppManager.getInstance().getTopActivity(), R.layout.dialog_update, null);
-                    ((TextView) view.findViewById(R.id.update_description)).setText(map.get("new_features"));
-                    AlertDialog.Builder builder = new AlertDialog.Builder(AppManager.getInstance().getTopActivity()).setTitle("发现新版本").
-                            setView(view).setPositiveButton("立即更新", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-//                            startDownload(map.get("download_url"));
-                            Intent intent = new Intent(AppManager.getInstance().getTopActivity(), DownLoadService.class);
-                            intent.putExtra("download_url", map.get("download_url"));
-//                            Log.e("df", map.get("download_url"));
-                            AppManager.getInstance().getTopActivity().startService(intent);
-                        }
-                    }).setNegativeButton("以后再说", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialogInterface, int i) {
-                        }
-                    });
-                    builder.create();
-                    builder.setCancelable(false);
-                    builder.show();
+                    showBuilder(result);
+//                    final Map<String, String> map = JSONUtils.parseDataToMap(result);
+//                    View view = View.inflate(AppManager.getInstance().getTopActivity(), R.layout.dialog_update, null);
+//                    ((TextView) view.findViewById(R.id.update_description)).setText(map.get("new_features"));
+//                    AlertDialog.Builder builder = new AlertDialog.Builder(AppManager.getInstance().getTopActivity()).setTitle("发现新版本").
+//                            setView(view).setPositiveButton("立即更新", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialog, int which) {
+////                            startDownload(map.get("download_url"));
+//                            Intent intent = new Intent(AppManager.getInstance().getTopActivity(), DownLoadService.class);
+//                            intent.putExtra("download_url", map.get("download_url"));
+////                            Log.e("df", map.get("download_url"));
+//                            AppManager.getInstance().getTopActivity().startService(intent);
+//                        }
+//                    }).setNegativeButton("以后再说", new DialogInterface.OnClickListener() {
+//                        @Override
+//                        public void onClick(DialogInterface dialogInterface, int i) {
+//                        }
+//                    });
+//                    builder.create();
+//                    builder.setCancelable(false);
+//                    builder.show();
                 }
             }
 
@@ -94,6 +101,38 @@ public class UpdateManager {
 
             }
         });
+    }
+
+    public void showBuilder(String result) {
+        final Map<String, String> map = JSONUtils.parseDataToMap(result);
+        View view = View.inflate(AppManager.getInstance().getTopActivity(), R.layout.dlg_update, null);
+        TextView tv_content = (TextView) view.findViewById(R.id.update_description);
+        TextView tv_no = (TextView) view.findViewById(R.id.buildeexti_tv_no);
+        TextView tv_ok = (TextView) view.findViewById(R.id.builderexit_tv_ok);
+        final Dialog dialog = new Dialog(AppManager.getInstance().getTopActivity(), R.style.dialog);
+        tv_content.setText(map.get("new_features"));
+        tv_no.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+                AppManager.getInstance().killtoActivity(MainAty.class);
+                RxBus.getInstance().post(AppConstant.LOG_OUT, true);
+            }
+        });
+        tv_ok.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.cancel();
+                Intent intent = new Intent(AppManager.getInstance().getTopActivity(), DownLoadService.class);
+                intent.putExtra("download_url", map.get("download_url"));
+//                            Log.e("df", map.get("download_url"));
+                AppManager.getInstance().getTopActivity().startService(intent);
+
+            }
+        });
+        dialog.setContentView(view);
+        dialog.setCancelable(false);
+        dialog.show();
     }
 
     private void startDownload(String url) {

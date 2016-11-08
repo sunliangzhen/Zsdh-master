@@ -7,8 +7,11 @@ package com.toocms.dink5.mylibrary.app;
  */
 public class AppConstant {
 
-    public static final String HOME_CURRENT_TAB_POSITION="HOME_CURRENT_TAB_POSITION";
-    public static final String MENU_SHOW_HIDE="MENU_SHOW_HIDE";
+    public static final String HOME_CURRENT_TAB_POSITION = "HOME_CURRENT_TAB_POSITION";
+    public static final String MENU_SHOW_HIDE = "MENU_SHOW_HIDE";
+    public static final String LOG_OUT = "LOG_OUT";
+    public static final String LOG_OUT_MAIN = "LOG_OUT_MAIN";
+    public static final String TO_LOG_IN = "TO_LOG_IN";
 
     /* 新闻*/
     public static final String NEWS_ID = "news_id";

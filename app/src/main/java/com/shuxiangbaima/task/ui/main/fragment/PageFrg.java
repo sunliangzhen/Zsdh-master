@@ -209,6 +209,15 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
         layoutParams.height = AutoUtils.getPercentHeightSize(400);
         appbar.setLayoutParams(layoutParams);
 
+        CoordinatorLayout.LayoutParams layoutParams2 = (CoordinatorLayout.LayoutParams) fab.getLayoutParams();
+        layoutParams2.height = AutoUtils.getPercentHeightSize(110);
+        layoutParams2.width = AutoUtils.getPercentHeightSize(110);
+        fab.setLayoutParams(layoutParams2);
+
+        CollapsingToolbarLayout.LayoutParams layoutParamstop = (CollapsingToolbarLayout.LayoutParams) top.getLayoutParams();
+        layoutParamstop.height = AutoUtils.getPercentHeightSize(88);
+        top.setLayoutParams(layoutParamstop);
+        swipeLayout.setSize(AutoUtils.getPercentHeightSize(100));
         swipeLayout.setColorSchemeResources(R.color.red, R.color.blue, R.color.yellow, R.color.green);
         swipeLayout.setProgressViewEndTarget(true, AutoUtils.getPercentHeightSize(300));
         swipeLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {

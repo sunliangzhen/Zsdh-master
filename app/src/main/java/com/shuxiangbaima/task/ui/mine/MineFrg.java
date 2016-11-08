@@ -54,7 +54,7 @@ import rx.functions.Action1;
 /**
  * Created by Administrator on 2016/8/8.
  */
-public class MineFrg extends BaseFragment implements ApiListener, LoadingTip.onReloadListener {
+public class MineFrg extends BaseFragment implements LoadingTip.onReloadListener {
 
     @ViewInject(R.id.mine_tv_nickname)
     private TextView tv_nickname;
@@ -166,11 +166,8 @@ public class MineFrg extends BaseFragment implements ApiListener, LoadingTip.onR
     }
 
     @Override
-    public void onCancelled(Callback.CancelledException var1) {
-    }
-
-    @Override
     public void onComplete(RequestParams var1, String var2) {
+        super.onComplete(var1, var2);
         loadedTip.setLoadingTip(LoadingTip.LoadStatus.finish);
         if (var1.getUri().contains("profile") && JSONUtils.parseKeyAndValueToMap(var2).get("status").equals("200")) {
             Map<String, String> map1 = JSONUtils.parseDataToMap(var2);
@@ -198,15 +195,18 @@ public class MineFrg extends BaseFragment implements ApiListener, LoadingTip.onR
     }
 
     @Override
-    public void onError(Map<String, String> var1, RequestParams var2) {
+    public void onError(Map var1, RequestParams var2) {
+        super.onError(var1, var2);
         if (Config.isLogin()) {
             loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
             profile.profile(getActivity(), this);
         }
+
     }
 
     @Override
     public void onException(Throwable var1, RequestParams params) {
+        super.onException(var1, params);
         loadedTip.setLoadingTip(LoadingTip.LoadStatus.finish);
         showNetError();
     }

@@ -1,10 +1,12 @@
 package com.shuxiangbaima.task.ui.lar;
 
 import android.os.Bundle;
+import android.support.design.widget.TextInputLayout;
 import android.text.TextUtils;
 import android.util.TypedValue;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
@@ -15,6 +17,7 @@ import com.shuxiangbaima.task.interfaces.User;
 import com.shuxiangbaima.task.interfaces.Verify;
 import com.toocms.dink5.mylibrary.app.Config;
 import com.toocms.dink5.mylibrary.base.BasAty;
+import com.toocms.dink5.mylibrary.commonutils.PreferencesUtils;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
 import com.zhy.autolayout.utils.AutoUtils;
 
@@ -61,16 +64,16 @@ public class LoginAty extends BasAty {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        etxt_username.setTextSize(TypedValue.COMPLEX_UNIT_PX, AutoUtils.getPercentWidthSizeBigger(30));
-        etxt_pass.setTextSize(TypedValue.COMPLEX_UNIT_PX, AutoUtils.getPercentWidthSizeBigger(30));
-        etxt_imcode.setTextSize(TypedValue.COMPLEX_UNIT_PX, AutoUtils.getPercentWidthSizeBigger(30));
-
+//        SpannableString ss = new SpannableString("请输入手机号");
+//        AbsoluteSizeSpan ass = new AbsoluteSizeSpan(AutoUtils.getPercentWidthSizeBigger(60), false);
+//        ss.setSpan(ass, 0, ss.length(), Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+//        textin_name.setHint(new SpannedString(ss));
     }
 
     @Override
@@ -147,7 +150,10 @@ public class LoginAty extends BasAty {
             }
             if (map.get("status").equals("200")) {
                 Config.setLoginState(true);
-                application.setUserInfo(JSONUtils.parseDataToMap(var2));
+                PreferencesUtils.putString(this, "login_account", etxt_username.getText().toString());
+                PreferencesUtils.putString(this, "login_password", etxt_pass.getText().toString());
+                PreferencesUtils.putString(this, "token", JSONUtils.parseDataToMap(var2).get("token"));
+                PreferencesUtils.putString(this, "user_id", JSONUtils.parseDataToMap(var2).get("user_id"));
                 switch (type) {
                     case AppConfig.FRG_MON:
                         setResult(-1);

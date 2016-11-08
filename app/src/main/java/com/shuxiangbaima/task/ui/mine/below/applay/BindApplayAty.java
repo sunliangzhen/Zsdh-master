@@ -11,6 +11,7 @@ import android.widget.TextView;
 
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Security;
 import com.shuxiangbaima.task.interfaces.Verify;
 import com.toocms.dink5.mylibrary.app.AppCountdown;
@@ -27,7 +28,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/23.
  */
-public class BindApplayAty extends BasAty {
+public class BindApplayAty extends BaseAty {
 
     @ViewInject(R.id.bindapplay_tv_phone)
     private TextView tv_phone;
@@ -60,7 +61,7 @@ public class BindApplayAty extends BasAty {
         imageLoader = application.getImageLoader();
     }
     @Override
-    protected void requestData() {
+    public void requestData() {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {

@@ -29,6 +29,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.config.AppConfig;
 import com.shuxiangbaima.task.interfaces.Task;
 import com.shuxiangbaima.task.ui.lar.LoginAty;
@@ -56,7 +57,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/10.
  */
-public class DetailsAty extends BasAty implements LoadingTip.onReloadListener {
+public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
 
     @ViewInject(R.id.details_web)
     private WebView details_web;
@@ -107,7 +108,7 @@ public class DetailsAty extends BasAty implements LoadingTip.onReloadListener {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
     }
 
     @Override
@@ -194,13 +195,12 @@ public class DetailsAty extends BasAty implements LoadingTip.onReloadListener {
         }
         if (var1.getUri().contains("task_info") && JSONUtils.parseKeyAndValueToMap(var2).get("status").equals("200")) {
             map = JSONUtils.parseKeyAndValueToMap(JSONUtils.parseDataToMap(var2).get("task_info"));
-//            x.image().bind(imgv_cover, map.get("figure"), imageOptions);
             Glide.with(this)
                     .load(map.get("figure"))
                     .into(imgv_cover);
             tv_title.setText(map.get("task_name"));
             tv_mon.setText("￥" + map.get("profit"));
-
+            state = map.get("current_status");
             WebSettings webSettings = details_web.getSettings();
             webSettings.setJavaScriptEnabled(true);//设置支持JavaScript脚本
             webSettings.setAllowFileAccess(true);//设置可以访问文件
@@ -218,26 +218,11 @@ public class DetailsAty extends BasAty implements LoadingTip.onReloadListener {
             webSettings.setAllowFileAccessFromFileURLs(true);
             webSettings.setAllowUniversalAccessFromFileURLs(true);
             webSettings.setDomStorageEnabled(true);//可以使用Android4.4手机和Chrome Inspcet Device联调
-
-//            WebSettings webSettings = details_web.getSettings();
-//            webSettings.setJavaScriptEnabled(true);
-//            webSettings.setJavaScriptCanOpenWindowsAutomatically(true);
-//            webSettings.setSupportZoom(false);
-//            webSettings.setBuiltInZoomControls(false);
-//            webSettings.setAppCacheEnabled(false);
-//            webSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
-//            webSettings.setLoadWithOverviewMode(true);
-//            webSettings.setPluginState(WebSettings.PluginState.ON);
-//            webSettings.setAllowFileAccess(true);// 设置允许访问文件数据
-//            webSettings.setAllowFileAccessFromFileURLs(true);
-//            webSettings.setAllowUniversalAccessFromFileURLs(true);
-//            webSettings.setDomStorageEnabled(true);//可以使用Android4.4手机和Chrome Inspcet Device联调
             details_web.setWebViewClient(new WebViewClient() {
 
                 @Override
                 public void onPageFinished(WebView view, String url) {
                     super.onPageFinished(view, url);
-//                    progressBar.setVisibility(View.GONE);
                 }
 
                 @Override
@@ -257,7 +242,6 @@ public class DetailsAty extends BasAty implements LoadingTip.onReloadListener {
                 }
 //                syncCookie(this,url);
             });
-//            details_web.loadUrl("http://www.baidu.com/");
             details_web.loadUrl(map.get("preview_link"));
             switch (map.get("current_status")) {
                 case "1":

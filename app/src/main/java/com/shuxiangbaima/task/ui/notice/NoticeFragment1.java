@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BasFragment;
 import com.shuxiangbaima.task.interfaces.Notice;
 import com.toocms.dink5.mylibrary.commonutils.PreferencesUtils;
 import com.toocms.dink5.mylibrary.base.BaseFragment;
@@ -33,7 +34,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/9/21.
  */
-public class NoticeFragment1 extends BaseFragment implements ApiListener, LoadingTip.onReloadListener {
+public class NoticeFragment1 extends BasFragment implements LoadingTip.onReloadListener {
 
     @ViewInject(R.id.recyclerView)
     private RecyclerView recyclerView;
@@ -105,6 +106,7 @@ public class NoticeFragment1 extends BaseFragment implements ApiListener, Loadin
 
     @Override
     public void onComplete(RequestParams var1, String var2) {
+        super.onComplete(var1, var2);
         swipeRefreshLayout.setRefreshing(false);
         loadedTip.setLoadingTip(LoadingTip.LoadStatus.finish);
         if (var1.getUri().contains("notice_list") && JSONUtils.parseKeyAndValueToMap(var2).get("status").equals("200")) {
@@ -126,12 +128,15 @@ public class NoticeFragment1 extends BaseFragment implements ApiListener, Loadin
     }
 
     @Override
-    public void onError(Map<String, String> var1, RequestParams var2) {
-
+    protected void loginSuccess() {
+        loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
+        notice.notice_list(getActivity(), this);
     }
+
 
     @Override
     public void onException(Throwable var1, RequestParams params) {
+        super.onException(var1, params);
         swipeRefreshLayout.setRefreshing(false);
         loadedTip.setLoadingTip(LoadingTip.LoadStatus.finish);
         showNetError();

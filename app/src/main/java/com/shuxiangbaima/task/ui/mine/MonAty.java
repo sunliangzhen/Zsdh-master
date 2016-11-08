@@ -10,6 +10,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Profit;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
@@ -34,7 +35,7 @@ import it.gmariotti.recyclerview.adapter.SlideInLeftAnimatorAdapter;
 /**
  * Created by Administrator on 2016/8/10.
  */
-public class MonAty extends BasAty implements OnRefreshListener, OnLoadMoreListener, LoadingTip.onReloadListener {
+public class MonAty extends BaseAty implements OnRefreshListener, OnLoadMoreListener, LoadingTip.onReloadListener {
 
     @ViewInject(R.id.mytask_ptr_frame)
     private IRecyclerView frg_refush;
@@ -58,7 +59,7 @@ public class MonAty extends BasAty implements OnRefreshListener, OnLoadMoreListe
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
         showProgressContent();
         profit.friends(next_offset, this, this);
     }

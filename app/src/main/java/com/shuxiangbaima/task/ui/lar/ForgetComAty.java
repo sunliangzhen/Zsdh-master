@@ -45,7 +45,7 @@ public class ForgetComAty extends BasAty {
     }
 
     @Override
-    protected void requestData() {
+    public void requestData() {
     }
 
     @Override

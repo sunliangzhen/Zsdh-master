@@ -5,6 +5,7 @@ import android.view.View;
 import android.widget.EditText;
 
 import com.shuxiangbaima.task.R;
+import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Cash;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
@@ -16,7 +17,7 @@ import org.xutils.view.annotation.ViewInject;
 /**
  * Created by Administrator on 2016/9/18.
  */
-public class ApplayMonAty extends BasAty {
+public class ApplayMonAty extends BaseAty {
 
     @ViewInject(R.id.applaymon_etxt_mon)
     private EditText etxt_mon;
@@ -39,8 +40,7 @@ public class ApplayMonAty extends BasAty {
     }
 
     @Override
-    protected void requestData() {
-
+    public void requestData() {
     }
 
     @Event(value = {R.id.applaymon_imgv_back, R.id.applaymon_fb})

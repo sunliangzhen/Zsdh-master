@@ -23,6 +23,7 @@ import com.shuxiangbaima.task.ui.mine.MineFrg;
 import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.app.Config;
 import com.toocms.dink5.mylibrary.base.BaseActivity;
+import com.zhy.autolayout.utils.AutoUtils;
 
 import org.xutils.view.annotation.ViewInject;
 
@@ -73,16 +74,29 @@ public class MainAty extends BaseActivity {
         setBackTwo(true);
         initTab();
         initFragment(savedInstanceState);
+        tabLayout.setTextsize(AutoUtils.getPercentWidthSizeBigger(12));
+        tabLayout.setIconHeight(AutoUtils.getPercentHeightSizeBigger(20));
+        tabLayout.setIconWidth(AutoUtils.getPercentHeightSizeBigger(20));
         tabLayout.measure(0, 0);
         tabLayoutHeight = tabLayout.getMeasuredHeight();
-        //监听菜单显示或隐藏
         mRxManager.on(AppConstant.MENU_SHOW_HIDE, new Action1<Boolean>() {
             @Override
             public void call(Boolean hideOrShow) {
                 startAnimation(hideOrShow);
             }
         });
-//        SetTranslanteBar();
+        mRxManager.on(AppConstant.LOG_OUT, new Action1<Boolean>() {
+            @Override
+            public void call(Boolean hideOrShow) {
+                logOut();
+            }
+        });
+    }
+
+    private void logOut() {
+        preposition = 0;
+        SwitchTo(0);
+        tabLayout.setCurrentTab(preposition);
     }
 
     /**
@@ -196,6 +210,7 @@ public class MainAty extends BaseActivity {
                 transaction.hide(monFrg2);
                 transaction.hide(mineFrg);
                 transaction.show(pageFrg);
+//                pageFrg.
                 transaction.commitAllowingStateLoss();
                 break;
             //任务

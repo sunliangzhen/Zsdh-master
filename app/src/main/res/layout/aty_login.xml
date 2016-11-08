@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fbutton="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff"
-    android:focusable="true"
-    android:focusableInTouchMode="true"
-    android:orientation="vertical">
+              xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#fff"
+              android:focusable="true"
+              android:focusableInTouchMode="true"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,11 +15,12 @@
 
         <ImageView
             android:id="@+id/login_imgv_back"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50px"
+            android:layout_height="50px"
+            android:scaleType="fitXY"
             android:layout_centerVertical="true"
             android:layout_marginLeft="30px"
-            android:src="@drawable/ic_menu_back" />
+            android:src="@drawable/ic_menu_back"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -27,7 +28,7 @@
             android:layout_centerInParent="true"
             android:text="会员登陆"
             android:textColor="#fff"
-            android:textSize="@dimen/text_title" />
+            android:textSize="@dimen/text_title"/>
 
         <TextView
             android:id="@+id/login_tv_register"
@@ -38,7 +39,7 @@
             android:layout_marginRight="30px"
             android:text="注册"
             android:textColor="#fff"
-            android:textSize="@dimen/text_content" />
+            android:textSize="@dimen/text_content"/>
     </RelativeLayout>
 
     <ImageView
@@ -47,57 +48,39 @@
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="30px"
         android:scaleType="fitXY"
-        android:src="@drawable/ic_login_logo" />
+        android:src="@drawable/ic_login_logo"/>
 
-    <android.support.design.widget.TextInputLayout
+    <EditText
+        android:id="@+id/login_etxt_username"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="88px"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"
         android:layout_marginTop="50px"
-        android:gravity="center"
+        android:background="@null"
+        android:drawableBottom="@drawable/selector_editext"
         android:hint="请输入手机号码"
+        android:inputType="phone"
+        android:maxLength="11"
+        android:maxLines="1"
         android:textColorHint="#999999"
-        fbutton:counterEnabled="true"
-        fbutton:counterMaxLength="11"
-        fbutton:hintAnimationEnabled="true"
-        fbutton:theme="@style/AppTheme_editext">
+        android:textSize="30px"
+        />
 
-        <EditText
-            android:id="@+id/login_etxt_username"
-            android:layout_width="match_parent"
-            android:layout_height="88px"
-            android:background="@null"
-            android:drawableBottom="@drawable/selector_editext"
-            android:inputType="phone"
-            android:maxLength="11"
-            android:paddingBottom="10px"
-            android:textSize="14sp" />
-
-    </android.support.design.widget.TextInputLayout>
-
-
-    <android.support.design.widget.TextInputLayout
+    <EditText
+        android:id="@+id/login_etxt_pass"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="88px"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"
-        android:gravity="center"
+        android:background="@null"
+        android:drawableBottom="@drawable/selector_editext"
         android:hint="请输入密码"
+        android:inputType="textPassword"
+        android:maxLines="1"
         android:textColorHint="#999999"
-        fbutton:counterMaxLength="20"
-        fbutton:hintAnimationEnabled="true"
-        fbutton:theme="@style/AppTheme_editext">
-
-        <EditText
-            android:id="@+id/login_etxt_pass"
-            android:layout_width="match_parent"
-            android:layout_height="88px"
-            android:background="@null"
-            android:drawableBottom="@drawable/selector_editext"
-            android:inputType="textPassword"
-            android:textSize="14sp" />
-    </android.support.design.widget.TextInputLayout>
+        android:textSize="30px"
+        />
 
 
     <LinearLayout
@@ -116,16 +99,18 @@
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:background="#fff"
+            android:drawableBottom="@drawable/selector_editext"
             android:gravity="center_vertical"
             android:hint="请输入图片验证码"
+            android:maxLines="1"
             android:textColorHint="#999999"
-            android:textSize="14sp" />
+            android:textSize="30px"/>
 
         <ImageView
             android:id="@+id/login_imgv_code"
             android:layout_width="200px"
             android:layout_height="match_parent"
-            android:scaleType="fitXY" />
+            android:scaleType="fitXY"/>
     </LinearLayout>
 
     <View
@@ -133,7 +118,7 @@
         android:layout_height="1px"
         android:layout_marginLeft="30px"
         android:layout_marginRight="30px"
-        android:background="#dbdbdb" />
+        android:background="#dbdbdb"/>
 
     <TextView
         android:id="@+id/login_tv_forget"
@@ -144,7 +129,7 @@
         android:layout_marginTop="30px"
         android:text="忘记密码?"
         android:textColor="@color/top2"
-        android:textSize="30px" />
+        android:textSize="30px"/>
 
     <info.hoang8f.widget.FButton
         android:id="@+id/login_tv_ok"
@@ -162,7 +147,7 @@
         fbutton:cornerRadius="7px"
         fbutton:shadowColor="@color/top"
         fbutton:shadowEnabled="false"
-        fbutton:shadowHeight="7px" />
+        fbutton:shadowHeight="7px"/>
 
 
     <LinearLayout
@@ -178,7 +163,7 @@
             android:layout_width="wrap_content"
             android:layout_height="1px"
             android:layout_weight="1"
-            android:background="#dbdbdb" />
+            android:background="#dbdbdb"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -187,19 +172,20 @@
             android:layout_marginRight="30px"
             android:text="其它登陆方式"
             android:textColor="#dbdbdb"
-            android:textSize="@dimen/text_content" />
+            android:textSize="@dimen/text_content"/>
 
         <View
             android:layout_width="wrap_content"
             android:layout_height="1px"
             android:layout_weight="1"
-            android:background="#dbdbdb" />
+            android:background="#dbdbdb"/>
     </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="140px">
+        android:layout_marginTop="140px"
+        android:visibility="gone">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -211,7 +197,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_sina" />
+                android:src="@drawable/ic_sina"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -219,7 +205,7 @@
                 android:layout_marginTop="15px"
                 android:text="新浪"
                 android:textColor="#000"
-                android:textSize="@dimen/text_details3" />
+                android:textSize="@dimen/text_details3"/>
 
         </LinearLayout>
 
@@ -233,7 +219,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_wechat" />
+                android:src="@drawable/ic_wechat"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -241,7 +227,7 @@
                 android:layout_marginTop="15px"
                 android:text="微信"
                 android:textColor="#000"
-                android:textSize="@dimen/text_details3" />
+                android:textSize="@dimen/text_details3"/>
         </LinearLayout>
 
         <LinearLayout
@@ -254,7 +240,7 @@
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/ic_qq" />
+                android:src="@drawable/ic_qq"/>
 
             <TextView
                 android:layout_width="wrap_content"
@@ -262,7 +248,7 @@
                 android:layout_marginTop="15px"
                 android:text="QQ"
                 android:textColor="#000"
-                android:textSize="@dimen/text_details3" />
+                android:textSize="@dimen/text_details3"/>
         </LinearLayout>
 
 

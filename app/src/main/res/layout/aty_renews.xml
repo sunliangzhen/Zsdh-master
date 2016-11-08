@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f5f5f5"
-    android:orientation="vertical">
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#f5f5f5"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,11 +12,12 @@
 
         <ImageView
             android:id="@+id/renews_imgv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="50px"
+            android:layout_height="50px"
             android:layout_centerVertical="true"
             android:layout_marginLeft="30px"
-            android:src="@drawable/ic_menu_back" />
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_menu_back"/>
 
         <TextView
             android:id="@+id/renews_tv_title"
@@ -25,7 +26,7 @@
             android:layout_centerInParent="true"
             android:text="更改昵称"
             android:textColor="#fff"
-            android:textSize="@dimen/text_title" />
+            android:textSize="@dimen/text_title"/>
 
         <TextView
             android:id="@+id/renews_tv_ok"
@@ -36,7 +37,7 @@
             android:layout_marginRight="30px"
             android:text="提交"
             android:textColor="#fff"
-            android:textSize="28px" />
+            android:textSize="28px"/>
     </RelativeLayout>
 
     <EditText
@@ -49,7 +50,7 @@
         android:paddingLeft="30px"
         android:paddingRight="30px"
         android:textColorHint="#999999"
-        android:textSize="28px" />
+        android:textSize="28px"/>
 
     <com.toocms.dink5.mylibrary.view.AutoRadioGroup
         android:id="@+id/renews_rg"
@@ -67,12 +68,13 @@
             android:layout_height="80px"
             android:button="@null"
             android:drawableRight="@drawable/selector_resex"
-            android:text="先生" />
+            android:text="先生"
+            android:textSize="28px"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
-            android:background="#dbdbdb" />
+            android:background="#dbdbdb"/>
 
         <RadioButton
             android:id="@+id/renews_rbtn_nv"
@@ -80,6 +82,7 @@
             android:layout_height="80px"
             android:button="@null"
             android:drawableRight="@drawable/selector_resex"
-            android:text="小姐" />
+            android:text="小姐"
+            android:textSize="28px"/>
     </com.toocms.dink5.mylibrary.view.AutoRadioGroup>
 </LinearLayout>
