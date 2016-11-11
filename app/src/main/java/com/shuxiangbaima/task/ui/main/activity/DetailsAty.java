@@ -125,6 +125,8 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
         if (task_type.equals("1")) {
             include.setVisibility(View.GONE);
         }
+        showProgressContent();
+        task.task_info(task_id, this, this);
     }
 
     @Event(value = {R.id.details_back, R.id.include, R.id.details_tv_more, R.id.share_weip, R.id.share_wei, R.id.details_task_01})
@@ -171,7 +173,6 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
 
     @Override
     public void initPresenter() {
-
     }
 
     @Override
@@ -246,25 +247,30 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
             switch (map.get("current_status")) {
                 case "1":
                     tv_state.setText("进行中");
+                    tv_state.setBackgroundResource(R.drawable.shape_page_s);
                     btn_share.setText("分享");
                     break;
                 case "2":
                     tv_state.setText("进行中");
                     btn_share.setText("分享");
+                    tv_state.setBackgroundResource(R.drawable.shape_page_s);
                     break;
                 case "66":
                     task_01.setBackgroundResource(R.drawable.shape_page_more2);
                     task_02.setBackgroundResource(R.drawable.shape_page_more2);
                     tv_state.setText("已抢光");
                     btn_share.setText("友情分享");
+                    tv_state.setBackgroundResource(R.drawable.shape_page_s1);
                     break;
                 case "3":
                     tv_state.setText("审核中");
+                    tv_state.setBackgroundResource(R.drawable.shape_page_s);
                     task_01.setBackgroundResource(R.drawable.shape_page_more2);
                     task_02.setBackgroundResource(R.drawable.shape_page_more2);
                     btn_share.setText("友情分享");
                     break;
                 case "4":
+                    tv_state.setBackgroundResource(R.drawable.shape_page_s);
                     task_01.setBackgroundResource(R.drawable.shape_page_more2);
                     task_02.setBackgroundResource(R.drawable.shape_page_more2);
                     tv_state.setText("已完成");
@@ -374,8 +380,7 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
                     bmp.recycle();
 //            msg.thumbData = Util.bmpToByteArray(thumbBmp, true);
 //            Bitmap thumb = BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher);
-                    msg.thumbData = Util.bmpToByteArray(thumbBmp, true);
-
+                    msg.thumbData = Util.bmpToByteArray2(thumbBmp, true);
                     SendMessageToWX.Req req = new SendMessageToWX.Req();
                     req.transaction = buildTransaction("webpage");
                     req.message = msg;
@@ -426,8 +431,7 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        showProgressContent();
-        task.task_info(task_id, this, this);
+        regToWx();
         details_web.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {

@@ -36,7 +36,6 @@ public class SplashAty extends Activity {
         x.view().inject(this);
         myCountDownTimer = new MyCountDownTimer();
         AppManager.getInstance().addActivity(this);
-
         myCountDownTimer.start();
 //        Intent intent = new Intent(SplashAty.this, staService.class);
 //        startService(intent);

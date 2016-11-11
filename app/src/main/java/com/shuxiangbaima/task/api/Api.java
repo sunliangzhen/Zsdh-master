@@ -3,9 +3,11 @@ package com.shuxiangbaima.task.api;
 
 import android.support.annotation.NonNull;
 import android.util.SparseArray;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.shuxiangbaima.task.config.AppConfig;
+import com.toocms.dink5.mylibrary.BuildConfig;
 import com.toocms.dink5.mylibrary.baseapp.BaseApplication;
 import com.toocms.dink5.mylibrary.commonutils.NetWorkUtils;
 
@@ -75,22 +77,22 @@ public class Api {
 
     //构造方法私有
     private Api(int hostType) {
-        //开启Log
+
         HttpLoggingInterceptor logInterceptor = new HttpLoggingInterceptor();
         logInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
         //缓存
         File cacheFile = new File(BaseApplication.getAppContext().getCacheDir(), "cache");
         Cache cache = new Cache(cacheFile, 1024 * 1024 * 100); //100Mb
         //增加头部信息
-//        Interceptor headerInterceptor =new Interceptor() {
-//            @Override
-//            public Response intercept(Chain chain) throws IOException {
-//                Request build = chain.request().newBuilder()
-//                        .addHeader("Content-Type", "application/json")
-//                        .build();
-//                return chain.proceed(build);
-//            }
-//        };
+        Interceptor headerInterceptor = new Interceptor() {
+            @Override
+            public Response intercept(Chain chain) throws IOException {
+                Request build = chain.request().newBuilder()
+                        .addHeader("Content-Type", "application/json")
+                        .build();
+                return chain.proceed(build);
+            }
+        };
 
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .readTimeout(READ_TIME_OUT, TimeUnit.MILLISECONDS)
@@ -98,13 +100,14 @@ public class Api {
 //                .addInterceptor(mRewriteCacheControlInterceptor)
 //                .addNetworkInterceptor(mRewriteCacheControlInterceptor)
 //                .addInterceptor(headerInterceptor)
+                .addNetworkInterceptor(new CacheInterceptor())
                 .addInterceptor(logInterceptor)
-//                .cache(cache)
+                .cache(cache)
                 .build();
 
         Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").serializeNulls().create();
         retrofit = new Retrofit.Builder()
-//                .client(okHttpClient)
+                .client(okHttpClient)
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .baseUrl(AppConfig.BASE_URL)
@@ -136,6 +139,21 @@ public class Api {
         return NetWorkUtils.isNetConnected(BaseApplication.getAppContext()) ? CACHE_CONTROL_AGE : CACHE_CONTROL_CACHE;
     }
 
+    public class CacheInterceptor implements Interceptor {
+        @Override
+        public Response intercept(Chain chain) throws IOException {
+            Request request = chain.request();
+            Response response = chain.proceed(request);
+            Response response1 = response.newBuilder()
+                    .removeHeader("Pragma")
+                    .removeHeader("Cache-Control")
+                    //cache for 30 days
+                    .header("Cache-Control", "max-age=" + 3600 * 24 * 30)
+                    .build();
+            return response1;
+        }
+    }
+
     /**
      * 云端响应头拦截器，用来配置缓存策略
      * Dangerous interceptor that rewrites the server's cache-control header.
@@ -149,6 +167,7 @@ public class Api {
                         .cacheControl(CacheControl.FORCE_CACHE)
                         .build();
             }
+
             Response originalResponse = chain.proceed(request);
             if (NetWorkUtils.isNetConnected(BaseApplication.getAppContext())) {
                 //有网的时候读接口上的@Headers里的配置，你可以在这里进行统一的设置

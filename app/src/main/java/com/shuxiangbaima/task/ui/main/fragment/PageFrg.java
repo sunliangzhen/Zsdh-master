@@ -133,6 +133,7 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
         viewPager.startPaly();
         tv_01.startPlay();
         if (myAdapter.getDataCount() == 0) {
+            appbar.setExpanded(false);
             adImg();
             task.recommend_task(getActivity(), mPresenter);
             if (Config.isLogin()) {
@@ -182,22 +183,36 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
         loadedTip.setOnReloadListener(this);
         appbar.addOnOffsetChangedListener(new AppBarLayout.OnOffsetChangedListener() {
             @Override
-            public void onOffsetChanged(AppBarLayout appBarLayout, int verticalOffset) {
-                if (verticalOffset == 0) {
+            public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
+                if (i == 0) {
                     swipeLayout.setEnabled(true);
+                    top.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            return viewPager.dispatchTouchEvent(event);
+                        }
+                    });
+                } else if (Math.abs(i) >= appBarLayout.getTotalScrollRange()) {
+                    swipeLayout.setEnabled(false);
+                    top.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            return false;
+                        }
+                    });
                 } else {
                     swipeLayout.setEnabled(false);
+                    top.setOnTouchListener(new View.OnTouchListener() {
+                        @Override
+                        public boolean onTouch(View v, MotionEvent event) {
+                            return viewPager.dispatchTouchEvent(event);
+                        }
+                    });
                 }
+
             }
         });
 
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scrolltoTop();
-                appbar.setExpanded(true);
-            }
-        });
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             StatusBarUtil.setTranslucentForImageView(getActivity(), 0, imgv);
             int statusBarHeight = StatusBarUtil2.getStatusBarHeight(getActivity());
@@ -248,15 +263,9 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
                 }
             }
         });
-        top.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return viewPager.dispatchTouchEvent(event);
-            }
-        });
     }
 
-    @Event(value = {R.id.page_imgv_notice})
+    @Event(value = {R.id.page_imgv_notice, R.id.fab})
     private void onTestBaidulClick(View view) {
         switch (view.getId()) {
             case R.id.page_imgv_notice:
@@ -265,6 +274,10 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
                 } else {
                     startActivity(LoginAty.class, null);
                 }
+                break;
+            case R.id.fab:
+                scrolltoTop();
+                appbar.setExpanded(true);
                 break;
         }
     }
@@ -280,19 +293,6 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
             }
         }
     }
-
-    @Override
-    public void onCancelled(Callback.CancelledException var1) {
-    }
-
-    @Override
-    public void onError(Map<String, String> var1, RequestParams var2) {
-    }
-
-    @Override
-    public void onException(Throwable var1, RequestParams params) {
-    }
-
 
     private void notice() {
         noticeNum = 0;
@@ -338,7 +338,6 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
         getActivity().bindService(intent, conn, Context.BIND_AUTO_CREATE);
     }
 
-
     @Override
     public void reload() {
         if (Config.isLogin()) {
@@ -366,7 +365,6 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
         tv_01.setData(maps, tv_time, true);
         tv_total_profit.setText(total_profit + "元");
     }
-
 
     @Override
     public void returnTaskListData(PageBean pageBean) {

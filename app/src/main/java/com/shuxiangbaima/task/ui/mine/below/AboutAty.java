@@ -41,10 +41,10 @@ public class AboutAty extends BasAty {
     }
 
 
-    @Event(value = {R.id.bus_imgv_back})
+    @Event(value = {R.id.about_imgv_back})
     private void onTestBaidulClick(View view) {
         switch (view.getId()) {
-            case R.id.bus_imgv_back:
+            case R.id.about_imgv_back:
                 finish();
                 break;
         }

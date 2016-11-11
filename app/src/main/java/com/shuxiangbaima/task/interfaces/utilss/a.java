@@ -254,7 +254,6 @@ public class a {
         return sign;
     }
 
-
     /**
      * MD5 加密
      */

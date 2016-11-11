@@ -12,6 +12,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -69,6 +70,8 @@ public class PaiAty extends BaseAty implements LoadingTip.onReloadListener {
     private RecyclerView recyclerView;
     @ViewInject(R.id.loadedTip)
     private LoadingTip loadedTip;
+    @ViewInject(R.id.top)
+    private RelativeLayout top_relay;
 
     private MyAdapter myAdapter;
     private Profit profit;
@@ -106,6 +109,7 @@ public class PaiAty extends BaseAty implements LoadingTip.onReloadListener {
         removeProgressContent();
         loadedTip.setLoadingTip(LoadingTip.LoadStatus.finish);
         swiprefresh.setRefreshing(false);
+        top_relay.setVisibility(View.VISIBLE);
         Map<String, String> map = JSONUtils.parseKeyAndValueToMap(var2);
         if (var1.getUri().contains("profit_top")) {
             if (map.get("status").equals("200")) {
@@ -113,11 +117,12 @@ public class PaiAty extends BaseAty implements LoadingTip.onReloadListener {
                 total_profit = map1.get("total_profit");
                 rank = map1.get("rank");
                 tv_total_profit.setText(total_profit + "元");
-                if (total_profit.equals("0")) {
-                    tv_rank.setText("无收益");
-                } else {
-                    tv_rank.setText("排名：" + rank);
-                }
+//                if (total_profit.equals("0")) {
+//                    tv_rank.setText("无收益");
+//                } else {
+//                    tv_rank.setText("排名：" + rank);
+//                }
+                tv_rank.setText("排名：" + rank);
                 top = JSONUtils.parseKeyAndValueToMapList(map1.get("top"));
                 myAdapter.notifyDataSetChanged();
             }
@@ -130,6 +135,7 @@ public class PaiAty extends BaseAty implements LoadingTip.onReloadListener {
         loadedTip.setLoadingTip(LoadingTip.LoadStatus.finish);
         if (top.size() == 0) {
             loadedTip.setLoadingTip(LoadingTip.LoadStatus.error);
+            top_relay.setVisibility(View.GONE);
         }
         showNetError();
         swiprefresh.setRefreshing(false);

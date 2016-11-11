@@ -76,18 +76,10 @@ public class RegisterAty extends BasAty {
         super.onCreate(savedInstanceState);
         appCountdown = AppCountdown.getInstance();
         appCountdown.play(tv_send);
-
-        etxt_phone.setTextSize(TypedValue.COMPLEX_UNIT_PX, AutoUtils.getPercentWidthSize(30));
-        etxt_pass.setTextSize(TypedValue.COMPLEX_UNIT_PX, AutoUtils.getPercentWidthSize(30));
-        etxt_code.setTextSize(TypedValue.COMPLEX_UNIT_PX, AutoUtils.getPercentWidthSize(30));
-        etxt_yqm.setTextSize(TypedValue.COMPLEX_UNIT_PX, AutoUtils.getPercentWidthSize(30));
-        etxt_imgcode.setTextSize(TypedValue.COMPLEX_UNIT_PX, AutoUtils.getPercentWidthSize(30));
-
     }
 
     @Override
     public void initPresenter() {
-
     }
 
     @Event(value = {R.id.register_imgv_back, R.id.register_tv_send, R.id.register_tv_ok, R.id.register_imgv_code})

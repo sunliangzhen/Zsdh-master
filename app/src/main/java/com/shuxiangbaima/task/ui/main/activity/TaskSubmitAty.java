@@ -30,6 +30,7 @@ import com.toocms.dink5.mylibrary.commonutils.ImageUtils;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
 import com.zhy.autolayout.utils.AutoUtils;
 
+import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.Event;
@@ -78,7 +79,7 @@ public class TaskSubmitAty extends BaseAty {
         task_id = getIntent().getStringExtra("task_id");
         map = new HashMap<>();
         list_image = new ArrayList<>();
-        list_image.add("");
+        list_image.add("ss");
         task = new Task();
         myadapter = new Myadapter();
         myadapter2 = new Myadapter2();
@@ -163,6 +164,7 @@ public class TaskSubmitAty extends BaseAty {
         if (requestCode == REQUEST_IMAGE) {
             if (resultCode == RESULT_OK) {
                 mSelectPath = data.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT);
+                LogUtil.e(mSelectPath.toString());
                 list_image.remove(list_image.size() - 1);
                 list_image.add(mSelectPath.get(0));
                 list_image.add("ss");
@@ -295,15 +297,11 @@ public class TaskSubmitAty extends BaseAty {
         @Override
         public View getView(final int i, View convertView, ViewGroup viewGroup) {
             ViewHolder viewHolder;
-            if (convertView == null) {
-                viewHolder = new ViewHolder();
-                convertView = LayoutInflater.from(TaskSubmitAty.this).inflate(R.layout.item_sub_gv, viewGroup, false);
-                x.view().inject(viewHolder, convertView);
-                convertView.setTag(viewHolder);
-                AutoUtils.autoSize(convertView);
-            } else {
-                viewHolder = (ViewHolder) convertView.getTag();
-            }
+            viewHolder = new ViewHolder();
+            convertView = LayoutInflater.from(TaskSubmitAty.this).inflate(R.layout.item_sub_gv, viewGroup, false);
+            x.view().inject(viewHolder, convertView);
+            convertView.setTag(viewHolder);
+            AutoUtils.autoSize(convertView);
             if (k == 0) {
                 if (i == (list_image.size() - 1)) {
                     viewHolder.imgv.setImageResource(R.drawable.ic_photo);

@@ -14,7 +14,7 @@ import com.flyco.tablayout.listener.OnTabSelectListener;
 import com.shuxiangbaima.task.R;
 import com.shuxiangbaima.task.config.AppConfig;
 import com.shuxiangbaima.task.config.UpdateManager;
-import com.shuxiangbaima.task.ui.Mon.MonFrg2;
+import com.shuxiangbaima.task.ui.Mon.MonFrg;
 import com.shuxiangbaima.task.ui.lar.LoginAty;
 import com.shuxiangbaima.task.ui.main.bean.TabEntity;
 import com.shuxiangbaima.task.ui.main.fragment.PageFrg;
@@ -42,7 +42,7 @@ public class MainAty extends BaseActivity {
 
     private PageFrg pageFrg;
     private TaskFrg taskFrg;
-    private MonFrg2 monFrg2;
+    private MonFrg monFrg2;
     private MineFrg mineFrg;
 
     private String[] mTitles = {"首页", "任务", "收益", "个人"};
@@ -175,13 +175,13 @@ public class MainAty extends BaseActivity {
         if (savedInstanceState != null) {
             pageFrg = (PageFrg) getSupportFragmentManager().findFragmentByTag("pageFrg");
             taskFrg = (TaskFrg) getSupportFragmentManager().findFragmentByTag("taskFrg");
-            monFrg2 = (MonFrg2) getSupportFragmentManager().findFragmentByTag("monFrg2");
+            monFrg2 = (MonFrg) getSupportFragmentManager().findFragmentByTag("monFrg2");
             mineFrg = (MineFrg) getSupportFragmentManager().findFragmentByTag("mineFrg");
             currentTabPosition = savedInstanceState.getInt(AppConfig.HOME_CURRENT_TAB_POSITION);
         } else {
             pageFrg = new PageFrg();
             taskFrg = new TaskFrg();
-            monFrg2 = new MonFrg2();
+            monFrg2 = new MonFrg();
             mineFrg = new MineFrg();
             transaction.add(R.id.fl_body, pageFrg, "pageFrg");
             transaction.add(R.id.fl_body, taskFrg, "taskFrg");

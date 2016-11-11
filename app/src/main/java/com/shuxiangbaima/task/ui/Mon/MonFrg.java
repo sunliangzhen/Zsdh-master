@@ -19,11 +19,9 @@ import com.shuxiangbaima.task.interfaces.Profit;
 import com.shuxiangbaima.task.ui.mine.PaiAty;
 import com.shuxiangbaima.task.ui.mine.YqAty;
 import com.toocms.dink5.mylibrary.app.Config;
-import com.toocms.dink5.mylibrary.base.BaseFragment;
 import com.toocms.dink5.mylibrary.commonutils.StatusBarUtil2;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
 import com.toocms.dink5.mylibrary.commonwidget.LoadingTip;
-import com.toocms.dink5.mylibrary.net.ApiListener;
 import com.toocms.dink5.mylibrary.view.CycleView;
 import com.toocms.dink5.mylibrary.view.LinerView;
 import com.toocms.dink5.mylibrary.view.MySwiperefreshlayout;
@@ -31,7 +29,6 @@ import com.toocms.dink5.mylibrary.view.TopScrollView;
 import com.zhy.autolayout.utils.AutoUtils;
 
 import org.xutils.common.Callback;
-import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -44,7 +41,7 @@ import java.util.Map;
 /**
  * Created by Administrator on 2016/8/8.
  */
-public class MonFrg2 extends BasFragment implements LoadingTip.onReloadListener {
+public class MonFrg extends BasFragment implements LoadingTip.onReloadListener {
 
 
     @ViewInject(R.id.ll_point_group1)
@@ -61,6 +58,8 @@ public class MonFrg2 extends BasFragment implements LoadingTip.onReloadListener 
     private TopScrollView scrollview;
     @ViewInject(R.id.line_chart)
     private LinerView lineChart;
+    @ViewInject(R.id.money_total)
+    private TextView tv_money_total;
 
     private CycleView v1_cp, v11_cp;
     private CycleView v2_cp, v22_cp;
@@ -190,7 +189,7 @@ public class MonFrg2 extends BasFragment implements LoadingTip.onReloadListener 
             @Override
             public void onRefresh() {
                 if (Config.isLogin()) {
-                    profit.recent_profit(getActivity(), MonFrg2.this);
+                    profit.recent_profit(getActivity(), MonFrg.this);
                 }
             }
         });
@@ -231,6 +230,7 @@ public class MonFrg2 extends BasFragment implements LoadingTip.onReloadListener 
         if (var1.getUri().contains("recent_profit")) {
             if (map.get("status").equals("200")) {
                 Map<String, String> data_map = JSONUtils.parseDataToMap(var2);
+                tv_money_total.setText(data_map.get("remainder") + "元");
                 tv_remainder.setText("余额：" + data_map.get("remainder") + "元");
                 tv_remainder_t.setText("余额：" + data_map.get("remainder") + "元");
                 tv_remainder2.setText("余额：" + data_map.get("remainder") + "元");

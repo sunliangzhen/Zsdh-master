@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#4c000000">
@@ -20,39 +21,64 @@
             android:paddingBottom="30px"
             android:paddingTop="30px">
 
-            <TextView
+            <LinearLayout
                 android:id="@+id/share_wei"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:drawablePadding="15px"
-                android:drawableTop="@drawable/ic_wei"
                 android:gravity="center"
-                android:text="微信"
-                android:textSize="28px" />
+                android:orientation="vertical">
 
-            <TextView
+                <ImageView
+                    android:layout_width="110px"
+                    android:layout_height="110px"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_wei"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:gravity="center"
+                    android:text="微信"
+                    android:textSize="28px"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:id="@+id/share_weip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:drawablePadding="15px"
-                android:drawableTop="@drawable/ic_weip"
                 android:gravity="center"
-                android:text="朋友圈"
-                android:textSize="28px" />
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="110px"
+                    android:layout_height="110px"
+                    android:scaleType="fitXY"
+                    android:src="@drawable/ic_weip"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30px"
+                    android:gravity="center"
+                    android:text="朋友圈"
+                    android:textSize="28px"
+                    android:visibility="visible"/>
+            </LinearLayout>
+
 
             <TextView
                 android:id="@+id/share_qq"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
                 android:drawablePadding="15px"
                 android:drawableTop="@drawable/ic_qq2"
                 android:gravity="center"
                 android:text="QQ"
                 android:textSize="28px"
-                android:visibility="gone" />
+                android:visibility="gone"/>
         </LinearLayout>
 
 
@@ -68,7 +94,7 @@
             android:gravity="center"
             android:text="取消"
             android:textColor="#2c82df"
-            android:textSize="28px" />
+            android:textSize="28px"/>
     </LinearLayout>
 
 </RelativeLayout>

@@ -49,6 +49,8 @@ public class ApplayAty extends BaseAty {
 
     @Override
     public void requestData() {
+        showProgressContent();
+        cash.my_cash(this, this);
     }
 
     @Override
@@ -56,13 +58,6 @@ public class ApplayAty extends BaseAty {
 
     }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        showProgressContent();
-        cash.my_cash(this, this);
-
-    }
 
 
     @Event(value = {R.id.applay_imgv_back, R.id.applay_fb, R.id.applay_relay_record})

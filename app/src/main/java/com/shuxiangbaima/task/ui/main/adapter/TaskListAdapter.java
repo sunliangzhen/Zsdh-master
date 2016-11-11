@@ -33,7 +33,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
 
     private Context context;
     private List<TaskBean.TaskListEntity> task_list;
-//    private ImageOptions imageOptions;
+    //    private ImageOptions imageOptions;
     private IRecyclerView recyclerView;
 
     public TaskListAdapter(Context context, List<TaskBean.TaskListEntity> task_list, IRecyclerView recyclerView) {
@@ -66,8 +66,6 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
             task_list.clear();
         }
         task_list.addAll(elements);
-        task_list.addAll(elements);
-        task_list.addAll(elements);
         notifyDataSetChanged();
     }
 
@@ -88,12 +86,12 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
         switch (task_list.get(position).getTaskType()) {
             case "1":
                 viewHolder.tv_type.setBackgroundResource(R.drawable.shape_page_share);
-                viewHolder.tv_type.setTextColor(0xffff0000);
+                viewHolder.tv_type.setTextColor(0xffEBC581);
                 viewHolder.tv_type.setText("分享");
                 break;
             case "2":
                 viewHolder.tv_type.setBackgroundResource(R.drawable.shape_page_share2);
-                viewHolder.tv_type.setTextColor(0xffEBC581);
+                viewHolder.tv_type.setTextColor(0xff5315D1);
                 viewHolder.tv_type.setText("试用");
                 break;
             case "3":
@@ -103,7 +101,7 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
                 break;
             case "4":
                 viewHolder.tv_type.setBackgroundResource(R.drawable.shape_page_share4);
-                viewHolder.tv_type.setTextColor(0xff2EEE26);
+                viewHolder.tv_type.setTextColor(0xffff0000);
                 viewHolder.tv_type.setText("充值");
                 break;
         }
@@ -114,21 +112,25 @@ public class TaskListAdapter extends RecyclerView.Adapter<TaskListAdapter.MyView
         switch (task_list.get(position).getCurrentStatus()) {
             case "1":
                 viewHolder.tv_state.setText("进行中");
+                viewHolder.tv_state.setBackgroundResource(R.drawable.shape_page_s);
                 break;
             case "2":
                 viewHolder.tv_state.setText("进行中");
+                viewHolder.tv_state.setBackgroundResource(R.drawable.shape_page_s);
                 break;
             case "66":
                 viewHolder.tv_state.setText("已抢光");
+                viewHolder.tv_state.setBackgroundResource(R.drawable.shape_page_s1);
                 break;
             case "3":
                 viewHolder.tv_state.setText("审核中");
+                viewHolder.tv_state.setBackgroundResource(R.drawable.shape_page_s);
                 break;
             case "4":
                 viewHolder.tv_state.setText("已完成");
+                viewHolder.tv_state.setBackgroundResource(R.drawable.shape_page_s);
                 break;
         }
-//        x.image().bind(viewHolder.imav_cover, task_list.get(position).getFigure(), imageOptions);
         Glide.with(context)
                 .load(task_list.get(position).getFigure())
                 .into(viewHolder.imav_cover);

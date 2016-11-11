@@ -87,7 +87,7 @@ public class MineFrg extends BaseFragment implements LoadingTip.onReloadListener
     public void onResume() {
         super.onResume();
         if (Config.isLogin()) {
-            loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
+//            loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
             profile.profile(getActivity(), this);
         }
     }
@@ -194,15 +194,6 @@ public class MineFrg extends BaseFragment implements LoadingTip.onReloadListener
         }
     }
 
-    @Override
-    public void onError(Map var1, RequestParams var2) {
-        super.onError(var1, var2);
-        if (Config.isLogin()) {
-            loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
-            profile.profile(getActivity(), this);
-        }
-
-    }
 
     @Override
     public void onException(Throwable var1, RequestParams params) {

@@ -73,7 +73,7 @@ public class TaskFrg extends BaseFragment<TaskListPresenter, TaskListModel> impl
     private RadioGroup linlay_order;
 
     @ViewInject(R.id.task_v_line)
-    private View sortFlag; // 排序标识
+    private View sortFlag;
 
     @ViewInject(R.id.task_tv_order)
     private TextView tv_order;
@@ -91,10 +91,10 @@ public class TaskFrg extends BaseFragment<TaskListPresenter, TaskListModel> impl
     @ViewInject(R.id.task_toolbar)
     private Toolbar toolbar;
 
-    private float sortFlagWidth; // 排序标识的长度
-    private int sortItemWidth; // 一个排序标签的宽度
-    private int sortItemPadding; // 每个item的左右边距
-    private int sortFlagPosition = 0; // 排序标识位置
+    private float sortFlagWidth;
+    private int sortItemWidth;
+    private int sortItemPadding;
+    private int sortFlagPosition = 0;
     private TextView[] ttvv;
     private ImageView[] imgv;
 
