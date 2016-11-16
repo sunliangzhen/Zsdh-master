@@ -12,6 +12,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -21,6 +22,7 @@ import com.bumptech.glide.request.target.SimpleTarget;
 import com.shuxiangbaima.task.R;
 import com.shuxiangbaima.task.interfaces.Profile;
 import com.shuxiangbaima.task.interfaces.User;
+import com.shuxiangbaima.task.view.GlideCircleTransform;
 import com.toocms.dink5.mylibrary.app.Config;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.PreferencesUtils;
@@ -35,6 +37,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 import me.nereo.multi_image_selector.MultiImageSelector;
 
 /**
@@ -43,7 +46,7 @@ import me.nereo.multi_image_selector.MultiImageSelector;
 public class SetnewsAty extends BasAty {
 
     @ViewInject(R.id.setnews_imgv_head)
-    private CircleImageView imgv_head;
+    private ImageView imgv_head;
     @ViewInject(R.id.setnews_tv_name)
     private TextView tv_name;
     @ViewInject(R.id.setnews_tv_gender)
@@ -94,16 +97,14 @@ public class SetnewsAty extends BasAty {
             }
         }
         tv_phone.setText(application.getUserInfo().get("username"));
+//        Glide.with(this).load(R.drawable.default_head)
+//                .transform(new GlideCircleTransform(this))
+//                .into(imgv_head);
         Glide.with(this)
                 .load(application.getUserInfo().get("avatar"))
-                .placeholder(R.drawable.default_head)
-                .into(new SimpleTarget<GlideDrawable>() {
-                    @Override
-                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                        imgv_head.setImageDrawable(resource);
-                    }
-                });
-//                Glide.with(getActivity()).load(R.drawable.default_head).into(imgv_head);
+                .bitmapTransform(new CropCircleTransformation(this))
+                .into(imgv_head);
+
     }
 
     @Event(value = {R.id.mynews_relay_head, R.id.setnews_relay_name, R.id.setnews_relay_sex, R.id.mine_imgv_back, R.id.setnews_relay_morenews, R.id.setnews_tv_logout})
@@ -238,7 +239,6 @@ public class SetnewsAty extends BasAty {
         if (requestCode == REQUEST_IMAGE) {
             if (resultCode == RESULT_OK) {
                 mSelectPath = data.getStringArrayListExtra(MultiImageSelector.EXTRA_RESULT);
-                LogUtil.e(mSelectPath.get(0));
                 showProgressContent();
                 profile.modify_avatar(mSelectPath.get(0), this, this);
             }
@@ -261,16 +261,11 @@ public class SetnewsAty extends BasAty {
         if (var1.getUri().contains("modify_avatar")) {
             if (map.get("status").equals("200")) {
                 String avatar = JSONUtils.parseDataToMap(var2).get("avatar");
-                PreferencesUtils.putString(this, "avatar", avatar);
+                application.setUserInfoItem(avatar, avatar);
                 Glide.with(this)
                         .load(avatar)
-                        .placeholder(R.drawable.default_head)
-                        .into(new SimpleTarget<GlideDrawable>() {
-                            @Override
-                            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                                imgv_head.setImageDrawable(resource);
-                            }
-                        });
+                        .transform(new GlideCircleTransform(this))
+                        .into(imgv_head);
             }
         }
     }

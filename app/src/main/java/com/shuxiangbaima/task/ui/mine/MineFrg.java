@@ -9,14 +9,11 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.drawable.GlideDrawable;
 import com.bumptech.glide.request.animation.GlideAnimation;
 import com.bumptech.glide.request.target.SimpleTarget;
-import com.jaeger.library.StatusBarUtil;
 import com.shuxiangbaima.task.R;
 import com.shuxiangbaima.task.config.AppConfig;
 import com.shuxiangbaima.task.interfaces.Profile;
@@ -28,28 +25,26 @@ import com.shuxiangbaima.task.ui.mine.below.IncomstateAty;
 import com.shuxiangbaima.task.ui.mine.below.RepassAty;
 import com.shuxiangbaima.task.ui.mine.below.applay.ApplayMangerAty;
 import com.shuxiangbaima.task.ui.mine.mynews.SetnewsAty;
+import com.shuxiangbaima.task.view.GlideCircleTransform;
 import com.toocms.dink5.mylibrary.app.Config;
 import com.toocms.dink5.mylibrary.base.BaseFragment;
 import com.toocms.dink5.mylibrary.baserx.RxBus;
 import com.toocms.dink5.mylibrary.commonutils.StatusBarUtil2;
-import com.toocms.dink5.mylibrary.commonwidget.LoadingTip;
-import com.toocms.dink5.mylibrary.net.ApiListener;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
+import com.toocms.dink5.mylibrary.commonwidget.LoadingTip;
 
 import org.json.JSONArray;
 import org.json.JSONException;
-import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-import de.hdodenhof.circleimageview.CircleImageView;
-import rx.functions.Action1;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
+
 
 /**
  * Created by Administrator on 2016/8/8.
@@ -59,7 +54,7 @@ public class MineFrg extends BaseFragment implements LoadingTip.onReloadListener
     @ViewInject(R.id.mine_tv_nickname)
     private TextView tv_nickname;
     @ViewInject(R.id.mine_imgv_head)
-    private CircleImageView imgv_head;
+    private ImageView imgv_head;
     @ViewInject(R.id.mine_top)
     private TextView mine_top;
 
@@ -86,6 +81,7 @@ public class MineFrg extends BaseFragment implements LoadingTip.onReloadListener
     @Override
     public void onResume() {
         super.onResume();
+
         if (Config.isLogin()) {
 //            loadedTip.setLoadingTip(LoadingTip.LoadStatus.loading);
             profile.profile(getActivity(), this);
@@ -182,14 +178,10 @@ public class MineFrg extends BaseFragment implements LoadingTip.onReloadListener
             if (!TextUtils.isEmpty(map1.get("avatar"))) {
                 Glide.with(getActivity())
                         .load(map1.get("avatar"))
-                        .placeholder(R.drawable.default_head)
-                        .into(new SimpleTarget<GlideDrawable>() {
-                            @Override
-                            public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                                imgv_head.setImageDrawable(resource);
-                            }
-                        });
-//                Glide.with(getActivity()).load(R.drawable.default_head).into(imgv_head);
+                        .bitmapTransform(new CropCircleTransformation(getActivity()))
+                        .transform(new GlideCircleTransform(getActivity()))
+                        .into(imgv_head);
+
             }
         }
     }

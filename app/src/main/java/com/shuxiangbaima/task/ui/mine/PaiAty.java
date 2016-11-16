@@ -27,6 +27,7 @@ import com.shuxiangbaima.task.ui.main.activity.MyTaskAty;
 import com.shuxiangbaima.task.ui.notice.DividerItemDecoration;
 import com.shuxiangbaima.task.ui.notice.NoticeDetailsAty;
 import com.shuxiangbaima.task.ui.notice.NoticeFragment1;
+import com.shuxiangbaima.task.view.GlideCircleTransform;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.ImageUtils;
 import com.toocms.dink5.mylibrary.commonutils.PreferencesUtils;
@@ -50,6 +51,7 @@ import in.srain.cube.views.ptr.PtrDefaultHandler;
 import in.srain.cube.views.ptr.PtrFrameLayout;
 import in.srain.cube.views.ptr.PtrHandler;
 import in.srain.cube.views.ptr.header.MaterialHeader;
+import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 /**
  * Created by Administrator on 2016/8/11.
@@ -110,6 +112,10 @@ public class PaiAty extends BaseAty implements LoadingTip.onReloadListener {
         loadedTip.setLoadingTip(LoadingTip.LoadStatus.finish);
         swiprefresh.setRefreshing(false);
         top_relay.setVisibility(View.VISIBLE);
+        Glide.with(this)
+                .load(application.getUserInfo().get("avatar"))
+                .bitmapTransform(new CropCircleTransformation(this))
+                .into(imgv_head);
         Map<String, String> map = JSONUtils.parseKeyAndValueToMap(var2);
         if (var1.getUri().contains("profit_top")) {
             if (map.get("status").equals("200")) {
@@ -159,15 +165,6 @@ public class PaiAty extends BaseAty implements LoadingTip.onReloadListener {
             }
         });
         swiprefresh.setColorSchemeResources(R.color.red, R.color.blue, R.color.yellow, R.color.green);
-        Glide.with(this)
-                .load(application.getUserInfo().get("avatar"))
-                .placeholder(R.drawable.default_head)
-                .into(new SimpleTarget<GlideDrawable>() {
-                    @Override
-                    public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
-                        imgv_head.setImageDrawable(resource);
-                    }
-                });
         tv_name.setText(application.getUserInfo().get("nickname"));
         loadedTip.setOnReloadListener(this);
     }

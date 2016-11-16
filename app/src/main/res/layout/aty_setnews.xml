@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#f5f5f5"
-    android:orientation="vertical">
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="#f5f5f5"
+              android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -15,10 +15,10 @@
             android:id="@+id/mine_imgv_back"
             android:layout_width="50px"
             android:layout_height="50px"
-            android:scaleType="fitXY"
             android:layout_centerVertical="true"
             android:layout_marginLeft="30px"
-            android:src="@drawable/ic_menu_back" />
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_menu_back"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
             android:layout_centerInParent="true"
             android:text="个人中心"
             android:textColor="#fff"
-            android:textSize="@dimen/text_title" />
+            android:textSize="@dimen/text_title"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -44,7 +44,7 @@
             android:layout_centerVertical="true"
             android:text="头像"
             android:textColor="#292929"
-            android:textSize="@dimen/text_content" />
+            android:textSize="@dimen/text_content"/>
 
         <ImageView
             android:id="@+id/setnews_imgv_01"
@@ -52,10 +52,10 @@
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_mine_back" />
+            android:src="@drawable/ic_mine_back"/>
 
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/setnews_imgv_head"
             android:layout_width="100px"
             android:layout_height="100px"
@@ -65,14 +65,13 @@
             android:layout_toLeftOf="@+id/setnews_imgv_01"
             android:scaleType="centerCrop"
             android:src="@drawable/default_head"
-            app:civ_border_color="#FF000000"
-            app:civ_border_width="0dp" />
+            />
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_alignParentBottom="true"
-            android:background="#ebebeb" />
+            android:background="#ebebeb"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -89,7 +88,7 @@
             android:layout_centerVertical="true"
             android:text="昵称"
             android:textColor="#292929"
-            android:textSize="@dimen/text_content" />
+            android:textSize="@dimen/text_content"/>
 
         <TextView
             android:id="@+id/setnews_tv_name"
@@ -100,13 +99,13 @@
             android:drawablePadding="20px"
             android:drawableRight="@drawable/ic_mine_back"
             android:textColor="#000"
-            android:textSize="@dimen/text_content" />
+            android:textSize="@dimen/text_content"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_alignParentBottom="true"
-            android:background="#ebebeb" />
+            android:background="#ebebeb"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -123,7 +122,7 @@
             android:layout_centerVertical="true"
             android:text="性别"
             android:textColor="#292929"
-            android:textSize="@dimen/text_content" />
+            android:textSize="@dimen/text_content"/>
 
         <TextView
             android:id="@+id/setnews_tv_gender"
@@ -134,13 +133,13 @@
             android:drawablePadding="20px"
             android:drawableRight="@drawable/ic_mine_back"
             android:textColor="#000"
-            android:textSize="@dimen/text_content" />
+            android:textSize="@dimen/text_content"/>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="1px"
             android:layout_alignParentBottom="true"
-            android:background="#ebebeb" />
+            android:background="#ebebeb"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -157,14 +156,14 @@
             android:layout_centerVertical="true"
             android:text="更多信息"
             android:textColor="#292929"
-            android:textSize="@dimen/text_content" />
+            android:textSize="@dimen/text_content"/>
 
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/ic_mine_back" />
+            android:src="@drawable/ic_mine_back"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -181,7 +180,7 @@
             android:layout_centerVertical="true"
             android:text="登陆手机"
             android:textColor="#292929"
-            android:textSize="@dimen/text_content" />
+            android:textSize="@dimen/text_content"/>
 
         <TextView
             android:id="@+id/setnews_tv_phone"
@@ -190,13 +189,8 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:textColor="#000"
-            android:textSize="28px" />
+            android:textSize="28px"/>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1px"
-            android:layout_alignParentBottom="true"
-            android:background="#ebebeb" />
     </RelativeLayout>
 
     <TextView
@@ -208,6 +202,6 @@
         android:gravity="center"
         android:text="退出登陆"
         android:textColor="@color/top"
-        android:textSize="@dimen/text_title" />
+        android:textSize="@dimen/text_title"/>
 
 </LinearLayout>

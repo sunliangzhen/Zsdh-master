@@ -37,7 +37,7 @@
                 android:background="#fff">
 
 
-                <de.hdodenhof.circleimageview.CircleImageView
+                <ImageView
                     android:id="@+id/mine_imgv_head"
                     android:layout_width="110px"
                     android:layout_height="110px"
@@ -45,8 +45,7 @@
                     android:layout_marginLeft="90px"
                     android:layout_marginRight="20px"
                     android:src="@drawable/default_head"
-                    app:civ_border_color="#FF000000"
-                    app:civ_border_width="0dp" />
+                   />
 
                 <TextView
                     android:id="@+id/mine_tv_nickname"

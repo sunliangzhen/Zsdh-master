@@ -57,7 +57,7 @@
             android:paddingRight="30px"
             android:visibility="gone">
 
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/pai_imgv"
                 android:layout_width="120px"
                 android:layout_height="120px"
@@ -65,8 +65,7 @@
                 android:layout_marginTop="40px"
                 android:scaleType="centerCrop"
                 android:src="@drawable/default_head"
-                app:civ_border_color="#FF000000"
-                app:civ_border_width="0dp"/>
+                />
 
             <TextView
                 android:id="@+id/tv_name"
