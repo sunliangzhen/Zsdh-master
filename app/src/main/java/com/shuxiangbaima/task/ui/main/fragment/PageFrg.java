@@ -1,5 +1,6 @@
 package com.shuxiangbaima.task.ui.main.fragment;
 
+import android.app.FragmentManager;
 import android.content.ComponentName;
 import android.content.Context;
 import android.content.Intent;
@@ -55,7 +56,6 @@ import com.toocms.dink5.mylibrary.viewpager.BannerBean;
 import com.toocms.dink5.mylibrary.viewpager.DisallowParentTouchViewPager;
 import com.zhy.autolayout.utils.AutoUtils;
 
-import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
@@ -141,6 +141,23 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
             }
         }
         fab.show();
+
+//        String str = "adcdf4541212";
+//        char[] ch = str.toCharArray();
+//        for (int p = 0; p < str.length(); p++) {
+//            String b = str.substring(p, str.length());
+//            ch = b.toCharArray();
+//            for (int i = 0; i < ch.length; i++) {
+//                for (int k = i; k < ch.length - i; k++) {
+//                    char c = ch[k];
+//                    char[] ss = new char[i];
+//                    for (int l = 0; l < i; l++) {
+//                        ss[l] = ch[l];
+//                    }
+//                    System.out.println("[Object Init] mInt=" + String.valueOf(ss) + ch[k]);
+//                }
+//            }
+//        }
     }
 
 
@@ -160,7 +177,6 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
                 RxBus.getInstance().post(AppConstant.MENU_SHOW_HIDE, true);
             }
         });
-
         tv_01 = (FlipTextView) in_head.findViewById(R.id.pagehead_tv_01);
         tv_total_profit = (TextView) in_head.findViewById(R.id.pagehead_total_profit);
         tv_time = (TextView) in_head.findViewById(R.id.pagehead_tiem);
@@ -170,8 +186,13 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
             tv_01.setData(JSONUtils.parseKeyAndValueToMapList(cash_list), tv_time, false);
             tv_total_profit.setText(PreferencesUtils.getString(getActivity(), "total_profit", "") + "元");
         }
-
         cashRecent();
+        HelloWorldImpl helloWorld = new HelloWorldImpl();
+        DynamicProxy dp = new DynamicProxy();
+        //在这里绑定的是HelloWorld,也就是HelloWorld是被代理接口。所以绑定关系时，需要传递一个HelloWorld的实现类的实例化对象。
+        HelloWorld helloWorld1 = (HelloWorld) dp.bindRelation(helloWorld);
+        helloWorld1.print();
+        helloWorld1.say();
 
         frg_refush.addHeaderView(in_head);
         frg_refush.addFooterView(in_foot);
