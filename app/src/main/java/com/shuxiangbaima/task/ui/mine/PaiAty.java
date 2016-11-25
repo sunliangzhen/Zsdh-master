@@ -74,6 +74,8 @@ public class PaiAty extends BaseAty implements LoadingTip.onReloadListener {
     private LoadingTip loadedTip;
     @ViewInject(R.id.top)
     private RelativeLayout top_relay;
+    @ViewInject(R.id.pai_imgv_tosun)
+    private ImageView imgv;
 
     private MyAdapter myAdapter;
     private Profit profit;
@@ -90,7 +92,9 @@ public class PaiAty extends BaseAty implements LoadingTip.onReloadListener {
 
     @Override
     public void requestData() {
-        showProgressContent();
+        if (top.size() == 0) {
+            showProgressContent();
+        }
         profit.profit_top(this, this);
     }
 
@@ -185,7 +189,7 @@ public class PaiAty extends BaseAty implements LoadingTip.onReloadListener {
                 Bundle bundle = new Bundle();
                 bundle.putString("total_profit", total_profit);
                 bundle.putString("rank", rank);
-                startActivity(SunpaiAty.class, bundle);
+                goToVideoPlayer(SunpaiAty.class, imgv, bundle);
                 break;
             case R.id.pai_imgv_back:
                 finish();

@@ -187,12 +187,12 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
             tv_total_profit.setText(PreferencesUtils.getString(getActivity(), "total_profit", "") + "元");
         }
         cashRecent();
-        HelloWorldImpl helloWorld = new HelloWorldImpl();
-        DynamicProxy dp = new DynamicProxy();
-        //在这里绑定的是HelloWorld,也就是HelloWorld是被代理接口。所以绑定关系时，需要传递一个HelloWorld的实现类的实例化对象。
-        HelloWorld helloWorld1 = (HelloWorld) dp.bindRelation(helloWorld);
-        helloWorld1.print();
-        helloWorld1.say();
+//        HelloWorldImpl helloWorld = new HelloWorldImpl();
+//        DynamicProxy dp = new DynamicProxy();
+//        //在这里绑定的是HelloWorld,也就是HelloWorld是被代理接口。所以绑定关系时，需要传递一个HelloWorld的实现类的实例化对象。
+//        HelloWorld helloWorld1 = (HelloWorld) dp.bindRelation(helloWorld);
+//        helloWorld1.print();
+//        helloWorld1.say();
 
         frg_refush.addHeaderView(in_head);
         frg_refush.addFooterView(in_foot);

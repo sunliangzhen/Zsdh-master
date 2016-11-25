@@ -1,10 +1,15 @@
 package com.shuxiangbaima.task.ui.mine;
 
+import android.annotation.TargetApi;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.AsyncTask;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.view.ViewCompat;
 import android.support.v7.widget.RecyclerView;
+import android.transition.Transition;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
@@ -21,7 +26,6 @@ import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
-import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
 import com.toocms.dink5.mylibrary.commonwidget.LoadingTip;
 
@@ -53,6 +57,8 @@ public class SunpaiAty extends BaseAty implements LoadingTip.onReloadListener {
     private LoadingTip loadedTip;
     @ViewInject(R.id.center)
     private RelativeLayout center;
+    @ViewInject(R.id.relay)
+    private RelativeLayout relay;
 
     private Invitation invitation;
     private IWXAPI api;
@@ -95,7 +101,9 @@ public class SunpaiAty extends BaseAty implements LoadingTip.onReloadListener {
             tv_pai.setText(rank);
         }
         loadedTip.setOnReloadListener(this);
+        initTransition(relay, "");
     }
+
 
     @Override
     public void initPresenter() {
@@ -111,7 +119,7 @@ public class SunpaiAty extends BaseAty implements LoadingTip.onReloadListener {
     private void onTestBaidulClick(View view) {
         switch (view.getId()) {
             case R.id.sunpai_imgv_back:
-                finish();
+                onBackPressed();
                 break;
             case R.id.yq_fb_share:
                 include.setVisibility(View.VISIBLE);
@@ -147,6 +155,7 @@ public class SunpaiAty extends BaseAty implements LoadingTip.onReloadListener {
                     protected Bitmap doInBackground(Void... params) {
                         return QRCodeEncoder.syncEncodeQRCode(invlink, BGAQRCodeUtil.dp2px(SunpaiAty.this, 150));
                     }
+
                     @Override
                     protected void onPostExecute(Bitmap bitmap) {
                         if (bitmap != null) {

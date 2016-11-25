@@ -1,7 +1,6 @@
 package com.shuxiangbaima.task.ui.main.adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,11 +15,10 @@ import com.bumptech.glide.Glide;
 import com.shuxiangbaima.task.R;
 import com.shuxiangbaima.task.ui.main.activity.DetailsAty;
 import com.shuxiangbaima.task.ui.main.bean.PageBean;
+import com.toocms.dink5.mylibrary.base.BaseActivity;
 import com.toocms.dink5.mylibrary.ire.IRecyclerView;
 import com.zhy.autolayout.utils.AutoUtils;
 
-import org.xutils.common.util.LogUtil;
-import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.ViewInject;
 import org.xutils.x;
 
@@ -33,14 +31,14 @@ import java.util.List;
 
 public class PageListAdapter extends RecyclerView.Adapter<PageListAdapter.MyViewHolder> {
 
-    private Context context;
+    private BaseActivity context;
     private List<PageBean.TaskListEntity> task_list;
     //    private ImageOptions imageOptions;
     private IRecyclerView recyclerView;
 
 
     public PageListAdapter(Context context, List<PageBean.TaskListEntity> task_list, IRecyclerView recyclerView) {
-        this.context = context;
+        this.context = (BaseActivity) context;
         this.task_list = task_list;
         this.recyclerView = recyclerView;
 //        imageOptions = new ImageOptions.Builder().setImageScaleType(ImageView.ScaleType.FIT_XY).setUseMemCache(true).build();
@@ -115,7 +113,7 @@ public class PageListAdapter extends RecyclerView.Adapter<PageListAdapter.MyView
 
 
     @Override
-    public void onBindViewHolder(MyViewHolder viewHolder, final int position) {
+    public void onBindViewHolder(final MyViewHolder viewHolder, final int position) {
         switch (task_list.get(position).getTaskType()) {
             case "1":
                 viewHolder.tv_type.setBackgroundResource(R.drawable.shape_page_share);
@@ -174,14 +172,24 @@ public class PageListAdapter extends RecyclerView.Adapter<PageListAdapter.MyView
         viewHolder.page_linlay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(context, DetailsAty.class);
-                Bundle bundle = new Bundle();
-                bundle.putString("task_id", task_list.get(position).getTaskId());
-                bundle.putString("task_type", task_list.get(position).getTaskType());
-                intent.putExtras(bundle);
-                context.startActivity(intent);
+                startAction(viewHolder.imav_cover, task_list.get(position).getTaskId(), task_list.get(position).getTaskType(),
+                        task_list.get(position).getFigure(), task_list.get(position).getProfit(), task_list.get(position).getTaskName()
+                        , task_list.get(position).getCurrentStatus());
             }
         });
+    }
+
+    public void startAction(View view, String taskId, String type,
+                            String url, double mon, String name, String state) {
+        Bundle bundle = new Bundle();
+        bundle.putString("task_id", taskId);
+        bundle.putString("task_type", type);
+        bundle.putString("url", url);
+        bundle.putString("name", name);
+        bundle.putString("state", state);
+        bundle.putString("mon", mon + "");
+        context.startActivityUserActivityOptions(DetailsAty.class, bundle, view);
+
     }
 
     @Override

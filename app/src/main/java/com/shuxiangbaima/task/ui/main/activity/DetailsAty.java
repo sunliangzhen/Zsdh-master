@@ -5,26 +5,20 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.CookieManager;
 import android.webkit.CookieSyncManager;
-import android.webkit.DownloadListener;
-import android.webkit.WebBackForwardList;
 import android.webkit.WebChromeClient;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
-import android.widget.ScrollView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -39,17 +33,14 @@ import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.app.Config;
-import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
 import com.toocms.dink5.mylibrary.commonwidget.LoadingTip;
 
-import org.xutils.common.util.LogUtil;
 import org.xutils.http.RequestParams;
-import org.xutils.image.ImageOptions;
 import org.xutils.view.annotation.Event;
 import org.xutils.view.annotation.ViewInject;
-import org.xutils.x;
 
 import java.net.URL;
 import java.util.Map;
@@ -92,6 +83,9 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
     //    private ImageOptions imageOptions;
     private String task_id;
     private String task_type;
+    private String img_url;
+    private String name;
+    private String mon;
     private Task task;
     private Map<String, String> map;
 
@@ -117,6 +111,10 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
 //        imageOptions = new ImageOptions.Builder().setImageScaleType(ImageView.ScaleType.FIT_XY).setUseMemCache(true).build();
         task_id = getIntent().getStringExtra("task_id");
         task_type = getIntent().getStringExtra("task_type");
+        img_url = getIntent().getStringExtra("url");
+        name = getIntent().getStringExtra("name");
+        state = getIntent().getStringExtra("state");
+        mon = getIntent().getStringExtra("mon");
     }
 
     @Override
@@ -133,7 +131,7 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
     private void onTestBaidulClick(View view) {
         switch (view.getId()) {
             case R.id.details_back:
-                finish();
+                onBackPressed();
                 break;
             case R.id.details_tv_more:
                 if (Config.isLogin()) {
@@ -176,6 +174,64 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
     }
 
     @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        regToWx();
+        details_web.setWebChromeClient(new WebChromeClient() {
+            @Override
+            public void onProgressChanged(WebView view, int newProgress) {
+                super.onProgressChanged(view, newProgress);
+                progressBar.setProgress(newProgress);
+                if (newProgress == 100) {
+                    linlay.setVisibility(View.VISIBLE);
+                    progressBar.setVisibility(View.GONE);
+                    setDataType();
+                }
+            }
+        });
+        loadedTip.setOnReloadListener(this);
+        Glide.with(this)
+                .load(img_url)
+                .into(imgv_cover);
+        tv_title.setText(name);
+        tv_mon.setText(mon + "");
+        switch (state) {
+            case "1":
+                tv_state.setText("进行中");
+                tv_state.setBackgroundResource(R.drawable.shape_page_s);
+                btn_share.setText("分享");
+                break;
+            case "2":
+                tv_state.setText("进行中");
+                btn_share.setText("分享");
+                tv_state.setBackgroundResource(R.drawable.shape_page_s);
+                break;
+            case "66":
+                task_01.setBackgroundResource(R.drawable.shape_page_more2);
+                task_02.setBackgroundResource(R.drawable.shape_page_more2);
+                tv_state.setText("已抢光");
+                btn_share.setText("友情分享");
+                tv_state.setBackgroundResource(R.drawable.shape_page_s1);
+                break;
+            case "3":
+                tv_state.setText("审核中");
+                tv_state.setBackgroundResource(R.drawable.shape_page_s);
+                task_01.setBackgroundResource(R.drawable.shape_page_more2);
+                task_02.setBackgroundResource(R.drawable.shape_page_more2);
+                btn_share.setText("友情分享");
+                break;
+            case "4":
+                tv_state.setBackgroundResource(R.drawable.shape_page_s);
+                task_01.setBackgroundResource(R.drawable.shape_page_more2);
+                task_02.setBackgroundResource(R.drawable.shape_page_more2);
+                tv_state.setText("已完成");
+                btn_share.setText("友情分享");
+                break;
+        }
+        initTransition(imgv_cover, AppConstant.TRANSITION_ANIMATION_NEWS_PHOTOS);
+    }
+
+    @Override
     public void onComplete(RequestParams var1, String var2) {
         super.onComplete(var1, var2);
         removeProgressContent();
@@ -196,12 +252,6 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
         }
         if (var1.getUri().contains("task_info") && JSONUtils.parseKeyAndValueToMap(var2).get("status").equals("200")) {
             map = JSONUtils.parseKeyAndValueToMap(JSONUtils.parseDataToMap(var2).get("task_info"));
-            Glide.with(this)
-                    .load(map.get("figure"))
-                    .into(imgv_cover);
-            tv_title.setText(map.get("task_name"));
-            tv_mon.setText("￥" + map.get("profit"));
-            state = map.get("current_status");
             WebSettings webSettings = details_web.getSettings();
             webSettings.setJavaScriptEnabled(true);//设置支持JavaScript脚本
             webSettings.setAllowFileAccess(true);//设置可以访问文件
@@ -244,39 +294,6 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
 //                syncCookie(this,url);
             });
             details_web.loadUrl(map.get("preview_link"));
-            switch (map.get("current_status")) {
-                case "1":
-                    tv_state.setText("进行中");
-                    tv_state.setBackgroundResource(R.drawable.shape_page_s);
-                    btn_share.setText("分享");
-                    break;
-                case "2":
-                    tv_state.setText("进行中");
-                    btn_share.setText("分享");
-                    tv_state.setBackgroundResource(R.drawable.shape_page_s);
-                    break;
-                case "66":
-                    task_01.setBackgroundResource(R.drawable.shape_page_more2);
-                    task_02.setBackgroundResource(R.drawable.shape_page_more2);
-                    tv_state.setText("已抢光");
-                    btn_share.setText("友情分享");
-                    tv_state.setBackgroundResource(R.drawable.shape_page_s1);
-                    break;
-                case "3":
-                    tv_state.setText("审核中");
-                    tv_state.setBackgroundResource(R.drawable.shape_page_s);
-                    task_01.setBackgroundResource(R.drawable.shape_page_more2);
-                    task_02.setBackgroundResource(R.drawable.shape_page_more2);
-                    btn_share.setText("友情分享");
-                    break;
-                case "4":
-                    tv_state.setBackgroundResource(R.drawable.shape_page_s);
-                    task_01.setBackgroundResource(R.drawable.shape_page_more2);
-                    task_02.setBackgroundResource(R.drawable.shape_page_more2);
-                    tv_state.setText("已完成");
-                    btn_share.setText("友情分享");
-                    break;
-            }
         }
     }
 
@@ -294,6 +311,8 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
 //        }
 //        return super.onKeyDown(keyCode, event);
 //    }
+
+
     @Override
     // 设置回退
     // 覆盖Activity类的onKeyDown(int keyCoder,KeyEvent event)方法
@@ -313,7 +332,6 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
 //            Log.d("Nat: webView.syncCookie.url", url);
 
             CookieSyncManager.createInstance(context);
-
             CookieManager cookieManager = CookieManager.getInstance();
             cookieManager.setAcceptCookie(true);
             cookieManager.removeSessionCookie();// 移除
@@ -428,24 +446,6 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
         }
     }
 
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        regToWx();
-        details_web.setWebChromeClient(new WebChromeClient() {
-            @Override
-            public void onProgressChanged(WebView view, int newProgress) {
-                super.onProgressChanged(view, newProgress);
-                progressBar.setProgress(newProgress);
-                if (newProgress == 100) {
-                    linlay.setVisibility(View.VISIBLE);
-                    progressBar.setVisibility(View.GONE);
-                    setDataType();
-                }
-            }
-        });
-        loadedTip.setOnReloadListener(this);
-    }
 
     @Override
     public void reload() {

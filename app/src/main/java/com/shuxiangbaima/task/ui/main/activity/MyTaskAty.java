@@ -1,6 +1,13 @@
 package com.shuxiangbaima.task.ui.main.activity;
 
+import android.app.Activity;
+import android.app.ActivityOptions;
+import android.content.Context;
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.shuxiangbaima.task.R;
 import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Task;
+import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.ImageUtils;
 import com.toocms.dink5.mylibrary.commonwidget.LoadingTip;
@@ -60,7 +68,9 @@ public class MyTaskAty extends BaseAty implements OnRefreshListener, OnLoadMoreL
 
     @Override
     public void requestData() {
-        showProgressContent();
+        if (task_list.size() == 0) {
+            showProgressContent();
+        }
         task.my_task(next_offset, this, this);
     }
 
@@ -164,7 +174,7 @@ public class MyTaskAty extends BaseAty implements OnRefreshListener, OnLoadMoreL
         }
 
         @Override
-        public void onBindViewHolder(ViewHolder viewHolder, final int position) {
+        public void onBindViewHolder(final ViewHolder viewHolder, final int position) {
             switch (task_list.get(position).get("task_type")) {
                 case "1":
                     viewHolder.tv_num.setText("有效点击：" + task_list.get(position).get("click_num"));
@@ -215,10 +225,9 @@ public class MyTaskAty extends BaseAty implements OnRefreshListener, OnLoadMoreL
             viewHolder.page_linlay.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Bundle bundle = new Bundle();
-                    bundle.putString("task_id", task_list.get(position).get("task_id"));
-                    bundle.putString("task_type", task_list.get(position).get("task_type"));
-                    startActivity(DetailsAty.class, bundle);
+                    startAction(MyTaskAty.this, viewHolder.imav_cover, task_list.get(position).get("task_id"), task_list.get(position).get("task_type"),
+                            task_list.get(position).get("figure"), task_list.get(position).get("profit"), task_list.get(position).get("task_name")
+                            , task_list.get(position).get("current_status"));
                 }
             });
         }
@@ -255,5 +264,29 @@ public class MyTaskAty extends BaseAty implements OnRefreshListener, OnLoadMoreL
 
     }
 
+    public static void startAction(Context mContext, View view, String taskId, String type,
+                                   String url, String mon, String name, String state) {
+        Intent intent = new Intent(mContext, DetailsAty.class);
+        Bundle bundle = new Bundle();
+        bundle.putString("task_id", taskId);
+        bundle.putString("task_type", type);
+        bundle.putString("url", url);
+        bundle.putString("name", name);
+        bundle.putString("state", state);
+        bundle.putString("mon", mon);
+        intent.putExtras(bundle);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ActivityOptions options = ActivityOptions
+                    .makeSceneTransitionAnimation((Activity) mContext, view, AppConstant.TRANSITION_ANIMATION_NEWS_PHOTOS);
+            mContext.startActivity(intent, options.toBundle());
+        } else {
+            //让新的Activity从一个小的范围扩大到全屏
+            ActivityOptionsCompat options = ActivityOptionsCompat
+                    .makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
+            ActivityCompat.startActivity((Activity) mContext, intent, options.toBundle());
+        }
+
+    }
 
 }

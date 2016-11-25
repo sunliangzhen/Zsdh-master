@@ -1,12 +1,21 @@
 package com.toocms.dink5.mylibrary.base;
 
 
+import android.annotation.TargetApi;
+import android.app.Activity;
+import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.util.Pair;
+import android.support.v4.view.ViewCompat;
+import android.transition.Transition;
 import android.view.View;
 import android.view.Window;
 import android.widget.TextView;
@@ -200,6 +209,71 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
             intent.putExtras(bundle);
         }
         startActivity(intent);
+    }
+
+    /**
+     * 含有Bundle通过Class跳转界面
+     **/
+    public void startActivityUserActivityOptions(Class<?> cls, Bundle bundle, View view) {
+        Intent intent = new Intent();
+        intent.setClass(this, cls);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ActivityOptions options = ActivityOptions
+                    .makeSceneTransitionAnimation((Activity) mContext, view, AppConstant.TRANSITION_ANIMATION_NEWS_PHOTOS);
+            mContext.startActivity(intent, options.toBundle());
+        } else {
+            //让新的Activity从一个小的范围扩大到全屏
+            ActivityOptionsCompat options = ActivityOptionsCompat
+                    .makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
+            ActivityCompat.startActivity((Activity) mContext, intent, options.toBundle());
+        }
+    }
+
+    public void initTransition(View view, String name) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            postponeEnterTransition();
+            ViewCompat.setTransitionName(view, name);
+            addTransitionListener();
+            startPostponedEnterTransition();
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private boolean addTransitionListener() {
+        final Transition transition = getWindow().getSharedElementEnterTransition();
+        if (transition != null) {
+            transition.addListener(new OnTransitionListener() {
+                @Override
+                public void onTransitionEnd(Transition transition) {
+                    transition.removeListener(this);
+                }
+            });
+            return true;
+        }
+        return false;
+    }
+
+    public void goToVideoPlayer(Class<?> cls, View view, Bundle bundle) {
+        Intent intent = new Intent();
+        intent.setClass(this, cls);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            Pair pair = new Pair<>(view, "");
+            ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                    this, pair);
+
+//            ActivityOptionsCompat compat = ActivityOptionsCompat.makeCustomAnimation(this,
+//                    R.anim.in_bottom_to_top, R.anim.out_bottom_to_top);
+            ActivityCompat.startActivity(this, intent, activityOptions.toBundle());
+        } else {
+            startActivity(intent);
+            overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
+        }
     }
 
     public void showProgressContent() {

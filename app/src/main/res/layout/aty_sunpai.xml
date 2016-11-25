@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:fbutton="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/relay"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#f5f5f5"
@@ -17,10 +19,10 @@
             android:id="@+id/sunpai_imgv_back"
             android:layout_width="50px"
             android:layout_height="50px"
-            android:scaleType="fitXY"
             android:layout_centerVertical="true"
             android:layout_marginLeft="30px"
-            android:src="@drawable/ic_menu_back" />
+            android:scaleType="fitXY"
+            android:src="@drawable/ic_menu_back"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -28,7 +30,7 @@
             android:layout_centerInParent="true"
             android:text="晒一晒我的排名"
             android:textColor="#fff"
-            android:textSize="@dimen/text_title" />
+            android:textSize="@dimen/text_title"/>
 
     </RelativeLayout>
 
@@ -46,7 +48,7 @@
             <ImageView
                 android:id="@+id/background"
                 android:layout_width="match_parent"
-                android:layout_height="800px" />
+                android:layout_height="800px"/>
 
             <LinearLayout
                 android:id="@+id/linlay_data"
@@ -65,7 +67,7 @@
                     android:gravity="center"
                     android:text="我"
                     android:textColor="#14827E"
-                    android:textSize="@dimen/text_title" />
+                    android:textSize="@dimen/text_title"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -74,7 +76,7 @@
                     android:gravity="center"
                     android:text="通过“转发宝”APP"
                     android:textColor="#14827E"
-                    android:textSize="@dimen/text_details2" />
+                    android:textSize="@dimen/text_details2"/>
 
                 <TextView
                     android:id="@+id/sunpai_tv_mon"
@@ -84,7 +86,7 @@
                     android:gravity="center"
                     android:text="赚了0元"
                     android:textColor="#14827E"
-                    android:textSize="@dimen/text_details" />
+                    android:textSize="@dimen/text_details"/>
 
                 <TextView
                     android:layout_width="match_parent"
@@ -93,7 +95,7 @@
                     android:gravity="center"
                     android:text="在所有转发宝中排名"
                     android:textColor="#14827E"
-                    android:textSize="@dimen/text_details2" />
+                    android:textSize="@dimen/text_details2"/>
 
                 <TextView
                     android:id="@+id/sunpai_tv_pai"
@@ -103,7 +105,7 @@
                     android:gravity="center"
                     android:text="无收益"
                     android:textColor="#14827E"
-                    android:textSize="@dimen/text_details" />
+                    android:textSize="@dimen/text_details"/>
             </LinearLayout>
 
             <ImageView
@@ -114,7 +116,7 @@
                 android:layout_centerHorizontal="true"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="30px"
-                android:scaleType="fitXY" />
+                android:scaleType="fitXY"/>
 
 
             <info.hoang8f.widget.FButton
@@ -133,7 +135,7 @@
                 fbutton:cornerRadius="20px"
                 fbutton:shadowColor="@color/button"
                 fbutton:shadowEnabled="false"
-                fbutton:shadowHeight="7px" />
+                fbutton:shadowHeight="7px"/>
         </RelativeLayout>
 
         <com.toocms.dink5.mylibrary.commonwidget.LoadingTip
@@ -142,7 +144,7 @@
             android:layout_height="match_parent"
             android:layout_below="@+id/details_relay_top"
             android:layout_gravity="center"
-            android:gravity="center" />
+            android:gravity="center"/>
     </RelativeLayout>
 
 
@@ -151,5 +153,5 @@
         layout="@layout/include_share"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="gone" />
+        android:visibility="gone"/>
 </RelativeLayout>
