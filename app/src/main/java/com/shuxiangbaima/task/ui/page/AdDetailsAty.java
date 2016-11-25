@@ -50,7 +50,6 @@ public class AdDetailsAty extends BaseActivity {
 
     @Override
     public void initPresenter() {
-
     }
 
     @Override
@@ -66,5 +65,4 @@ public class AdDetailsAty extends BaseActivity {
                 break;
         }
     }
-
 }

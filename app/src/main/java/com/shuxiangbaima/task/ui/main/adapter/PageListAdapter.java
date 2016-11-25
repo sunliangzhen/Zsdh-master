@@ -15,6 +15,7 @@ import com.bumptech.glide.Glide;
 import com.shuxiangbaima.task.R;
 import com.shuxiangbaima.task.ui.main.activity.DetailsAty;
 import com.shuxiangbaima.task.ui.main.bean.PageBean;
+import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.base.BaseActivity;
 import com.toocms.dink5.mylibrary.ire.IRecyclerView;
 import com.zhy.autolayout.utils.AutoUtils;
@@ -188,7 +189,7 @@ public class PageListAdapter extends RecyclerView.Adapter<PageListAdapter.MyView
         bundle.putString("name", name);
         bundle.putString("state", state);
         bundle.putString("mon", mon + "");
-        context.startActivityUserActivityOptions(DetailsAty.class, bundle, view);
+        context.startActivityUserActivityOptions(DetailsAty.class, bundle, view, AppConstant.TRANSITION_ANIMATION_NEWS_PHOTOS);
 
     }
 

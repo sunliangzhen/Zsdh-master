@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:app="http://schemas.android.com/apk/res-auto"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="#f5f5f5"
-              android:orientation="vertical">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#f5f5f5"
+    android:id="@+id/linlay"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -18,7 +19,7 @@
             android:layout_centerVertical="true"
             android:layout_marginLeft="30px"
             android:scaleType="fitXY"
-            android:src="@drawable/ic_menu_back"/>
+            android:src="@drawable/ic_menu_back" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -26,7 +27,7 @@
             android:layout_centerInParent="true"
             android:text="通知列表"
             android:textColor="#fff"
-            android:textSize="@dimen/text_title"/>
+            android:textSize="@dimen/text_title" />
     </RelativeLayout>
 
     <FrameLayout
@@ -50,12 +51,12 @@
                 android:gravity="center"
                 android:text="公告"
                 android:textColor="@color/top"
-                android:textSize="30px"/>
+                android:textSize="30px" />
 
             <View
                 android:layout_width="1px"
                 android:layout_height="25px"
-                android:background="#ebebeb"/>
+                android:background="#ebebeb" />
 
             <TextView
                 android:id="@+id/tv_01"
@@ -66,12 +67,12 @@
                 android:gravity="center"
                 android:text="通知"
                 android:textColor="#000"
-                android:textSize="30px"/>
+                android:textSize="30px" />
 
             <View
                 android:layout_width="1px"
                 android:layout_height="25px"
-                android:background="#ebebeb"/>
+                android:background="#ebebeb" />
 
             <TextView
                 android:id="@+id/tv_02"
@@ -82,7 +83,7 @@
                 android:gravity="center"
                 android:text="回复"
                 android:textColor="#000"
-                android:textSize="30px"/>
+                android:textSize="30px" />
 
         </LinearLayout>
 
@@ -90,7 +91,7 @@
             android:id="@+id/task_v_line"
             android:layout_width="200px"
             android:layout_height="2px"
-            android:background="#aaff0000"/>
+            android:background="#aaff0000" />
     </FrameLayout>
 
 
@@ -100,5 +101,5 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/tabLayout"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="15px"/>
+        android:layout_marginTop="15px" />
 </LinearLayout>

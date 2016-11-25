@@ -108,7 +108,7 @@ public class MyTaskAty extends BaseAty implements OnRefreshListener, OnLoadMoreL
     private void onTestBaidulClick(View view) {
         switch (view.getId()) {
             case R.id.mytask__imgv_back:
-                finish();
+                onBackPressed();
                 break;
         }
     }

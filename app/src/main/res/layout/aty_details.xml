@@ -14,9 +14,9 @@
             android:id="@+id/details_back"
             android:layout_width="50px"
             android:layout_height="50px"
-            android:scaleType="fitXY"
             android:layout_centerVertical="true"
             android:layout_marginLeft="30px"
+            android:scaleType="fitXY"
             android:src="@drawable/ic_menu_back" />
 
         <TextView
@@ -44,7 +44,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/details_relay_top"
-        android:background="#f5f5f5"
         android:orientation="vertical"
         android:visibility="visible">
 
@@ -73,16 +72,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_toRightOf="@id/details_imgv_cover"
-                android:text="借贷宝"
+                android:singleLine="true"
+                android:text="借贷宝借贷宝借贷宝借贷宝借贷宝借贷宝借贷宝借贷宝"
                 android:textColor="#000"
-                android:textSize="30px" />
+                android:textSize="28px" />
 
             <TextView
                 android:id="@+id/details_tv_01"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/details_tv_title"
-                android:layout_marginTop="30px"
+                android:layout_marginTop="35px"
                 android:layout_toRightOf="@id/details_imgv_cover"
                 android:text="完成奖励 : "
                 android:textColor="#000"
@@ -93,7 +93,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/details_tv_title"
-                android:layout_marginTop="30px"
+                android:layout_marginTop="35px"
                 android:layout_toRightOf="@id/details_tv_01"
                 android:text="￥0.1"
                 android:textColor="#f00"
@@ -105,7 +105,7 @@
                 android:layout_width="120px"
                 android:layout_height="40px"
                 android:layout_alignParentRight="true"
-                android:layout_centerVertical="true"
+                android:layout_marginTop="50px"
                 android:background="@drawable/shape_page_s"
                 android:gravity="center"
                 android:text="进行中"
@@ -118,7 +118,6 @@
             android:id="@+id/details_web"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="20px"
             android:background="#f5f5f5"
             android:visibility="visible" />
 

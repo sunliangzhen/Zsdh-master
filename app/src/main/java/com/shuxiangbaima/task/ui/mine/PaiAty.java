@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -28,6 +29,7 @@ import com.shuxiangbaima.task.ui.notice.DividerItemDecoration;
 import com.shuxiangbaima.task.ui.notice.NoticeDetailsAty;
 import com.shuxiangbaima.task.ui.notice.NoticeFragment1;
 import com.shuxiangbaima.task.view.GlideCircleTransform;
+import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.ImageUtils;
 import com.toocms.dink5.mylibrary.commonutils.PreferencesUtils;
@@ -187,9 +189,11 @@ public class PaiAty extends BaseAty implements LoadingTip.onReloadListener {
                 break;
             case R.id.pai_imgv_tosun:
                 Bundle bundle = new Bundle();
-                bundle.putString("total_profit", total_profit);
-                bundle.putString("rank", rank);
-                goToVideoPlayer(SunpaiAty.class, imgv, bundle);
+                if (!TextUtils.isEmpty(total_profit)) {
+                    bundle.putString("total_profit", total_profit);
+                    bundle.putString("rank", rank);
+                    startActivityUserActivityOptions(SunpaiAty.class, bundle, imgv, AppConstant.TRANSITION_ANIMATION_NEWS_PHOTOS);
+                }
                 break;
             case R.id.pai_imgv_back:
                 finish();

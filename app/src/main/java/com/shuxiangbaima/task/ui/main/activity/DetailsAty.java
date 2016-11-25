@@ -194,7 +194,7 @@ public class DetailsAty extends BaseAty implements LoadingTip.onReloadListener {
                 .load(img_url)
                 .into(imgv_cover);
         tv_title.setText(name);
-        tv_mon.setText(mon + "");
+        tv_mon.setText("￥" + mon + "");
         switch (state) {
             case "1":
                 tv_state.setText("进行中");

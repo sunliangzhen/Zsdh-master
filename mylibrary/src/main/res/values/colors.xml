@@ -85,4 +85,5 @@
 
     <color name="yellow">#FFF7D23E</color>
     <color name="top">#FA7C20</color>
+    <color name="progress">#D5D9D9</color>
 </resources>

@@ -26,6 +26,7 @@ import com.tencent.mm.sdk.modelmsg.WXMediaMessage;
 import com.tencent.mm.sdk.modelmsg.WXWebpageObject;
 import com.tencent.mm.sdk.openapi.IWXAPI;
 import com.tencent.mm.sdk.openapi.WXAPIFactory;
+import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
 import com.toocms.dink5.mylibrary.commonwidget.LoadingTip;
 
@@ -101,7 +102,7 @@ public class SunpaiAty extends BaseAty implements LoadingTip.onReloadListener {
             tv_pai.setText(rank);
         }
         loadedTip.setOnReloadListener(this);
-        initTransition(relay, "");
+        initTransition(relay, AppConstant.TRANSITION_ANIMATION_NEWS_PHOTOS);
     }
 
 
@@ -114,7 +115,6 @@ public class SunpaiAty extends BaseAty implements LoadingTip.onReloadListener {
         super.onResume();
         include.setVisibility(View.GONE);
     }
-
     @Event(value = {R.id.sunpai_imgv_back, R.id.yq_fb_share, R.id.include, R.id.share_weip, R.id.share_wei, R.id.share_qq})
     private void onTestBaidulClick(View view) {
         switch (view.getId()) {

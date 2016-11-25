@@ -1,10 +1,17 @@
 package com.toocms.dink5.mylibrary.base;
 
+import android.annotation.TargetApi;
+import android.app.ActivityOptions;
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.app.ActivityOptionsCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewCompat;
+import android.transition.Transition;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,6 +124,52 @@ public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel>
         startActivity(intent);
     }
 
+    /**
+     * 含有Bundle通过Class跳转界面
+     **/
+    public void startActivityUserActivityOptions(Class<?> cls, Bundle bundle, View view,String name) {
+        Intent intent = new Intent();
+        intent.setClass(getActivity(), cls);
+        if (bundle != null) {
+            intent.putExtras(bundle);
+        }
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            ActivityOptions options = ActivityOptions
+                    .makeSceneTransitionAnimation(getActivity(), view,name);
+            startActivity(intent, options.toBundle());
+        } else {
+            //让新的Activity从一个小的范围扩大到全屏
+            ActivityOptionsCompat options = ActivityOptionsCompat
+                    .makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
+            ActivityCompat.startActivity(getActivity(), intent, options.toBundle());
+        }
+    }
+
+
+    public void initTransition(View view, String name) {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            getActivity().postponeEnterTransition();
+            ViewCompat.setTransitionName(view, name);
+            addTransitionListener();
+            getActivity().startPostponedEnterTransition();
+        }
+    }
+
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    private boolean addTransitionListener() {
+        final Transition transition = getActivity().getWindow().getSharedElementEnterTransition();
+        if (transition != null) {
+            transition.addListener(new OnTransitionListener() {
+                @Override
+                public void onTransitionEnd(Transition transition) {
+                    transition.removeListener(this);
+                }
+            });
+            return true;
+        }
+        return false;
+    }
+
     public void showProgressContent() {
         startProgressDialog();
     }
@@ -219,7 +272,6 @@ public abstract class BaseFragment<T extends BasePresenter, E extends BaseModel>
     @Override
     public void onComplete(RequestParams var1, String var2) {
     }
-
 
 
 }

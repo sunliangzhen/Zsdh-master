@@ -3,12 +3,14 @@ package com.shuxiangbaima.task.ui.Mon;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.shuxiangbaima.task.R;
 import com.shuxiangbaima.task.api.BaseAty;
 import com.shuxiangbaima.task.interfaces.Cash;
 import com.shuxiangbaima.task.interfaces.Security;
+import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.base.BasAty;
 import com.toocms.dink5.mylibrary.commonutils.PreferencesUtils;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
@@ -30,7 +32,6 @@ public class ApplayAty extends BaseAty {
     private TextView tv_balance;
     @ViewInject(R.id.apply_tv_cash)
     private TextView tv_cash;
-
 
     private Cash cash;
     private Map<String, String> map;
@@ -58,7 +59,10 @@ public class ApplayAty extends BaseAty {
 
     }
 
-
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Event(value = {R.id.applay_imgv_back, R.id.applay_fb, R.id.applay_relay_record})
     private void onTestBaidulClick(View view) {

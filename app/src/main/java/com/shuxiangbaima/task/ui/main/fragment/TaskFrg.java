@@ -35,6 +35,7 @@ import com.shuxiangbaima.task.ui.main.bean.TaskBean;
 import com.shuxiangbaima.task.ui.main.contract.TaskListContract;
 import com.shuxiangbaima.task.ui.main.model.TaskListModel;
 import com.shuxiangbaima.task.ui.main.presenter.TaskListPresenter;
+import com.shuxiangbaima.task.ui.notice.NoticeAty;
 import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.app.Config;
 import com.toocms.dink5.mylibrary.commonutils.Settings;
@@ -90,6 +91,8 @@ public class TaskFrg extends BaseFragment<TaskListPresenter, TaskListModel> impl
     public FloatingActionButton fab;
     @ViewInject(R.id.task_toolbar)
     private Toolbar toolbar;
+    @ViewInject(R.id.task_mytask)
+    private ImageView task_mytask;
 
     private float sortFlagWidth;
     private int sortItemWidth;

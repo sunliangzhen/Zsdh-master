@@ -17,7 +17,9 @@ import com.shuxiangbaima.task.R;
 import com.shuxiangbaima.task.api.BasFragment;
 import com.shuxiangbaima.task.interfaces.Profit;
 import com.shuxiangbaima.task.ui.mine.PaiAty;
+import com.shuxiangbaima.task.ui.mine.SunpaiAty;
 import com.shuxiangbaima.task.ui.mine.YqAty;
+import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.app.Config;
 import com.toocms.dink5.mylibrary.commonutils.StatusBarUtil2;
 import com.toocms.dink5.mylibrary.commonutils.utils.JSONUtils;
@@ -60,6 +62,8 @@ public class MonFrg extends BasFragment implements LoadingTip.onReloadListener {
     private LinerView lineChart;
     @ViewInject(R.id.money_total)
     private TextView tv_money_total;
+    @ViewInject(R.id.mon_tv_applay)
+    private TextView mon_tv_applay;
 
     private CycleView v1_cp, v11_cp;
     private CycleView v2_cp, v22_cp;

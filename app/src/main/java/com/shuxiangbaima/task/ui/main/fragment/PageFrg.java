@@ -38,11 +38,13 @@ import com.shuxiangbaima.task.ui.main.bean.PageBean;
 import com.shuxiangbaima.task.ui.main.contract.PageListContract;
 import com.shuxiangbaima.task.ui.main.model.PageListModel;
 import com.shuxiangbaima.task.ui.main.presenter.PageListPresenter;
+import com.shuxiangbaima.task.ui.mine.SunpaiAty;
 import com.shuxiangbaima.task.ui.notice.NoticeAty;
 import com.shuxiangbaima.task.ui.page.AdDetailsAty;
 import com.shuxiangbaima.task.ui.page.Cashervice;
 import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.app.Config;
+import com.toocms.dink5.mylibrary.base.BaseActivity;
 import com.toocms.dink5.mylibrary.base.BaseFragment;
 import com.toocms.dink5.mylibrary.baserx.RxBus;
 import com.toocms.dink5.mylibrary.commonutils.PreferencesUtils;
@@ -94,6 +96,8 @@ public class PageFrg extends BaseFragment<PageListPresenter, PageListModel> impl
     private ImageView imgv;
     @ViewInject(R.id.swipeLayout)
     private SwipeRefreshLayout swipeLayout;
+    @ViewInject(R.id.page_imgv_notice)
+    private ImageView imgv_notice;
 
     private TextView tv_more;
     private TextView tv_total_profit;

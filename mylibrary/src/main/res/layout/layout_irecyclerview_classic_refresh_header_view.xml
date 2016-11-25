@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.zhy.autolayout.AutoRelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<com.zhy.autolayout.AutoRelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -12,7 +11,7 @@
         android:layout_marginRight="100px"
         android:layout_toLeftOf="@+id/tvRefresh"
         android:scaleType="fitXY"
-        android:src="@drawable/pull"/>
+        android:src="@drawable/pull" />
 
     <ImageView
         android:id="@+id/ivSuccess"
@@ -22,16 +21,16 @@
         android:layout_marginRight="100px"
         android:layout_toLeftOf="@+id/tvRefresh"
         android:scaleType="fitXY"
-        android:src="@drawable/qq_refresh_success"/>
+        android:src="@drawable/qq_refresh_success" />
 
     <ProgressBar
         android:id="@+id/progressbar"
+        style="@style/MyProgressBar"
         android:layout_width="50px"
         android:layout_height="50px"
         android:layout_centerVertical="true"
         android:layout_marginRight="100px"
-        android:layout_toLeftOf="@+id/tvRefresh"
-        android:indeterminateDrawable="@drawable/progressbar"/>
+        android:layout_toLeftOf="@+id/tvRefresh" />
 
     <TextView
         android:id="@+id/tvRefresh"
@@ -40,6 +39,6 @@
         android:layout_centerInParent="true"
         android:gravity="center"
         android:textColor="#fff"
-        android:textSize="30px"/>
+        android:textSize="30px" />
 
 </com.zhy.autolayout.AutoRelativeLayout>

@@ -90,7 +90,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     private boolean isTwoBack;
     protected boolean hasAnimiation = true;
 
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -214,7 +213,7 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
     /**
      * 含有Bundle通过Class跳转界面
      **/
-    public void startActivityUserActivityOptions(Class<?> cls, Bundle bundle, View view) {
+    public void startActivityUserActivityOptions(Class<?> cls, Bundle bundle, View view,String name) {
         Intent intent = new Intent();
         intent.setClass(this, cls);
         if (bundle != null) {
@@ -222,15 +221,16 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             ActivityOptions options = ActivityOptions
-                    .makeSceneTransitionAnimation((Activity) mContext, view, AppConstant.TRANSITION_ANIMATION_NEWS_PHOTOS);
-            mContext.startActivity(intent, options.toBundle());
+                    .makeSceneTransitionAnimation(this, view, name);
+            startActivity(intent, options.toBundle());
         } else {
             //让新的Activity从一个小的范围扩大到全屏
             ActivityOptionsCompat options = ActivityOptionsCompat
                     .makeScaleUpAnimation(view, view.getWidth() / 2, view.getHeight() / 2, 0, 0);
-            ActivityCompat.startActivity((Activity) mContext, intent, options.toBundle());
+            ActivityCompat.startActivity(this, intent, options.toBundle());
         }
     }
+
 
     public void initTransition(View view, String name) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
@@ -256,25 +256,6 @@ public abstract class BaseActivity<T extends BasePresenter, E extends BaseModel>
         return false;
     }
 
-    public void goToVideoPlayer(Class<?> cls, View view, Bundle bundle) {
-        Intent intent = new Intent();
-        intent.setClass(this, cls);
-        if (bundle != null) {
-            intent.putExtras(bundle);
-        }
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
-            Pair pair = new Pair<>(view, "");
-            ActivityOptionsCompat activityOptions = ActivityOptionsCompat.makeSceneTransitionAnimation(
-                    this, pair);
-
-//            ActivityOptionsCompat compat = ActivityOptionsCompat.makeCustomAnimation(this,
-//                    R.anim.in_bottom_to_top, R.anim.out_bottom_to_top);
-            ActivityCompat.startActivity(this, intent, activityOptions.toBundle());
-        } else {
-            startActivity(intent);
-            overridePendingTransition(R.anim.abc_fade_in, R.anim.abc_fade_out);
-        }
-    }
 
     public void showProgressContent() {
         startProgressDialog();

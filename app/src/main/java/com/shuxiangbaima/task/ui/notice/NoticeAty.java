@@ -21,6 +21,7 @@ import android.widget.TextView;
 
 import com.shuxiangbaima.task.R;
 import com.shuxiangbaima.task.interfaces.Notice;
+import com.toocms.dink5.mylibrary.app.AppConstant;
 import com.toocms.dink5.mylibrary.base.BaseActivity;
 import com.toocms.dink5.mylibrary.commonutils.Settings;
 import com.zhy.autolayout.utils.AutoUtils;
@@ -80,7 +81,7 @@ public class NoticeAty extends BaseActivity {
         notice = new Notice();
 //        db = x.getDb(((Myappcation) getApplicationContext()).getDaoConfig());
         sortFlagWidth = AutoUtils.getPercentWidthSize(150);
-        sortItemWidth = (int) ((Settings.displayWidth - (AutoUtils.getPercentWidthSize(1) * 1)) /3);
+        sortItemWidth = (int) ((Settings.displayWidth - (AutoUtils.getPercentWidthSize(1) * 1)) / 3);
         sortItemPadding = (int) ((sortItemWidth - sortFlagWidth) / 2);
     }
 
@@ -120,7 +121,7 @@ public class NoticeAty extends BaseActivity {
     private void onTestBaidulClick(View view) {
         switch (view.getId()) {
             case R.id.notice_imgv_back:
-                finish();
+                onBackPressed();
                 break;
             case R.id.tv_00:
                 sortFlagPosition = 0;
